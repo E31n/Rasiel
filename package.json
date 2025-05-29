@@ -7,7 +7,9 @@
         "build": "astro build",
         "preview": "astro preview",
         "astro": "astro",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "genjson": "node scripts/generate-json.js",
+        "genthumbs": "node scripts/generate-thumbs.js"
     },
     "dependencies": {
         "@astrojs/svelte": "^7.1.0",

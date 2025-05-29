@@ -31,5 +31,5 @@ const wallpapers = fs
 
 fs.writeFileSync(
     'src/data/wallpapers.json',
-    JSON.stringify(wallpapers, null, 2),
+    JSON.stringify(wallpapers, null, 4),
 );

@@ -61,9 +61,7 @@ export async function getDoc(
     };
 }
 
-export async function getComponentDoc(
-    slug: string,
-): Promise<{
+export async function getComponentDoc(slug: string): Promise<{
     component: Component;
     metadata: DocMetadata;
     schemas: APISchema[];

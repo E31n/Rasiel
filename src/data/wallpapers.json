@@ -1,15 +1,15 @@
 [
     {
-        "title": "Tokyo Ghoul",
-        "tags": ["tokyo ghoul", "ken kaneki", "mask"],
-        "image": "wallpapers/full/Tokyo-Ghoul_Ken-Kaneki_Mask.jpg",
-        "thumbnail": "wallpapers/thumbs/Tokyo-Ghoul_Ken-Kaneki_Mask-thumb.jpg"
-    },
-    {
         "title": "Overlord",
         "tags": ["overlord", "albedo", "succubus"],
         "image": "wallpapers/full/Overlord_Albedo_Succubus.png",
         "thumbnail": "wallpapers/thumbs/Overlord_Albedo_Succubus-thumb.png"
+    },
+    {
+        "title": "Tokyo Ghoul",
+        "tags": ["tokyo ghoul", "ken kaneki", "mask"],
+        "image": "wallpapers/full/Tokyo-Ghoul_Ken-Kaneki_Mask.jpg",
+        "thumbnail": "wallpapers/thumbs/Tokyo-Ghoul_Ken-Kaneki_Mask-thumb.jpg"
     },
     {
         "title": "Your Lie In April",
