@@ -1,31 +1,20 @@
 [
-  {
-    "title": "Tokyo Ghoul",
-    "tags": [
-      "tokyo ghoul",
-      "ken kaneki",
-      "mask"
-    ],
-    "image": "wallpapers/full/Tokyo-Ghoul_Ken-Kaneki_Mask.jpg",
-    "thumbnail": "wallpapers/thumbs/Tokyo-Ghoul_Ken-Kaneki_Mask-thumb.jpg"
-  },
-  {
-    "title": "Overlord",
-    "tags": [
-      "overlord",
-      "albedo",
-      "succubus"
-    ],
-    "image": "wallpapers/full/Overlord_Albedo_Succubus.png",
-    "thumbnail": "wallpapers/thumbs/Overlord_Albedo_Succubus-thumb.png"
-  },
-  {
-    "title": "Your Lie In April",
-    "tags": [
-      "your lie in april",
-      "kaori"
-    ],
-    "image": "wallpapers/full/Your-Lie-In-April_Kaori.jpeg",
-    "thumbnail": "wallpapers/thumbs/Your-Lie-In-April_Kaori-thumb.jpeg"
-  }
+    {
+        "title": "Tokyo Ghoul",
+        "tags": ["tokyo ghoul", "ken kaneki", "mask"],
+        "image": "wallpapers/full/Tokyo-Ghoul_Ken-Kaneki_Mask.jpg",
+        "thumbnail": "wallpapers/thumbs/Tokyo-Ghoul_Ken-Kaneki_Mask-thumb.jpg"
+    },
+    {
+        "title": "Overlord",
+        "tags": ["overlord", "albedo", "succubus"],
+        "image": "wallpapers/full/Overlord_Albedo_Succubus.png",
+        "thumbnail": "wallpapers/thumbs/Overlord_Albedo_Succubus-thumb.png"
+    },
+    {
+        "title": "Your Lie In April",
+        "tags": ["your lie in april", "kaori"],
+        "image": "wallpapers/full/Your-Lie-In-April_Kaori.jpeg",
+        "thumbnail": "wallpapers/thumbs/Your-Lie-In-April_Kaori-thumb.jpeg"
+    }
 ]

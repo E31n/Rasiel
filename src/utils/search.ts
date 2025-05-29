@@ -1,31 +1,36 @@
 // thanks @joyofcodedev for this :)
-import FlexSearch from "flexsearch";
+import FlexSearch from 'flexsearch';
 
 export type SearchContent = {
-	title: string;
-	content: string;
-	description: string;
-	href: string;
+    title: string;
+    tags: string[];
+    image: string;
+    thumbnail: string;
 };
 
-let contentIndex: FlexSearch.Index;
+import type { Index } from 'flexsearch';
+
+let contentIndex: Index;
 let content: SearchContent[] = [];
 
 export function createContentIndex(data: SearchContent[]) {
-	contentIndex = new FlexSearch.Index({
-		tokenize: "forward",
-	});
+    contentIndex = new FlexSearch.Index({
+        tokenize: 'forward',
+    });
 
-	data.forEach((item, i) => {
-		contentIndex.add(i, `${item.title} ${item.content} ${item.description}`);
-	});
+    data.forEach((item, i) => {
+        contentIndex.add(
+            i,
+            `${item.title} ${item.tags.map((tag) => tag).join(' ')}`,
+        );
+    });
 
-	content = data;
+    content = data;
 }
 
 export function searchContentIndex(query: string) {
-	const match = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-	const results = contentIndex.search(match);
+    const match = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const results = contentIndex.search(match);
 
-	return results.map((idx) => content[idx as number]);
+    return results.map((idx: any) => content[idx as number]);
 }

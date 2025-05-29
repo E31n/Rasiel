@@ -114,9 +114,9 @@
 								<Command.Loading>Loading...</Command.Loading>
 							{/if}
 
-							{#each results as { title, href } (title + href)}
+							{#each results as { title, image } (title + image)}
 								<Command.LinkItem
-									{href}
+									href={image}
 									class="rounded-button data-selected:bg-muted outline-hidden flex h-10 cursor-pointer select-none items-center gap-2 px-3 py-2.5 text-sm capitalize"
 									onSelect={() => {
 										searchQuery = "";
