@@ -17,7 +17,7 @@ export const siteConfig = defineSiteConfig({
 	},
 	links: {
 		x: "https://x.com/huntabyte",
-		github: "https://github.com/huntabyte/bits-ui",
+		github: "https://github.com/E13n/Rasiel",
 	},
 	keywords: [
 		"Svelte",

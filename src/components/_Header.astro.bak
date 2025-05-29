@@ -1,5 +1,5 @@
 ---
-const githubUrl = "https://github.com/your-repo";
+const githubUrl = "https://github.com/E13n/Rasiel";
 ---
 
 <header class="flex items-center justify-between px-4 py-3 border-b border-zinc-200 dark:border-zinc-700">

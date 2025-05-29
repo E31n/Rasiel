@@ -1,17 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/site-header.svelte';
-import WallpaperCard from '../components/WallpaperCard.astro';
-import wallpapers from '../data/wallpapers.json';
+import WallpaperComponent from '../components/WallpaperComponent.svelte';
 ---
 
 <BaseLayout>
   <Header client:only />
-
-  <main class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    {wallpapers.map(w => (
-      <WallpaperCard {...w} />
-    ))}
-  </main>
+  <WallpaperComponent client:only />
 </BaseLayout>
 
