@@ -17,9 +17,12 @@
     "flexsearch": "^0.8.204",
     "mode-watcher": "^1.0.7",
     "phosphor-svelte": "^3.0.1",
+    "sharp": "^0.34.2",
     "tailwindcss": "^4.1.8"
   },
   "trustedDependencies": [
-    "@tailwindcss/oxide"
+    "@tailwindcss/oxide",
+    "esbuild",
+    "sharp"
   ]
 }

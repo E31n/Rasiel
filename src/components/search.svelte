@@ -2,6 +2,7 @@
 	import MagnifyingGlass from "phosphor-svelte/lib/MagnifyingGlass";
 	import { onMount } from "svelte";
 	import { Button, Command, Dialog } from "bits-ui";
+	import content from "../data/wallpapers.json";
 	import {
 		type SearchContent,
 		createContentIndex,
@@ -15,7 +16,7 @@
 	let results = $state<SearchContent[]>([]);
 
 	onMount(async () => {
-		const content = await fetch("/api/search.json").then((res) => res.json());
+		// const content = await fetch("/api/search.json").then((res) => res.json());
 		createContentIndex(content);
 		searchState = "ready";
 	});
@@ -56,7 +57,7 @@
 			class="bg-muted text-muted-foreground ring-offset-background hover:bg-dark-10 focus-visible:ring-foreground focus-visible:ring-offset-background focus-visible:outline-hidden relative hidden h-10 items-center justify-between gap-3 whitespace-nowrap rounded-[9px] px-3 text-sm font-normal transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 sm:inline-flex sm:w-72"
 		>
 			<span class="flex items-center gap-2">
-				<MagnifyingGlass class="size-5" />Search Docs ...
+				<MagnifyingGlass class="size-5" />Search Wallpapers ...
 			</span>
 			<span class="flex items-center gap-[1px]">
 				<kbd

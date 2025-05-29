@@ -1,5 +1,40 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@pages/*": ["src/pages/*"],
+      "@styles/*": ["src/styles/*"],
+      "@utils/*": ["src/utils/*"]
+    },
+    "jsx": "preserve",
+    "jsxImportSource": "@astrojs/renderer-react",
+    "target": "esnext",
+    "strict": true,
+    "alwaysStrict": true,
+  },
+  // allow arbitrary file extensions
+  "allowJs": true,
+  "checkJs": true,
+  "types": ["astro/client", "@astrojs/renderer-react/client"],
+  "typeRoots": ["./node_modules/@types", "./src/types"],
+  "lib": ["dom", "dom.iterable", "esnext"],
+  "module": "esnext",
+  "moduleResolution": "node",
+  "esModuleInterop": true,
+  "forceConsistentCasingInFileNames": true,
+  "noImplicitAny": true,
+  "noImplicitThis": true,
+  "noUnusedLocals": true,
+  "noUnusedParameters": true,
+  "noImplicitReturns": true,
+  "noFallthroughCasesInSwitch": true,
+  "skipLibCheck": true,
+  "resolveJsonModule": true,
+  "isolatedModules": true,
   "exclude": ["dist"]
 }

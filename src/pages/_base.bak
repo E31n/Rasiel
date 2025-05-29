@@ -1,0 +1,23 @@
+
+  <script type="module">
+    const input = document.getElementById('search');
+    input.addEventListener('input', () => {
+      const query = input.value.toLowerCase();
+      const cards = document.querySelectorAll('main > div');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? 'block' : 'none';
+      });
+    });
+
+    const toggle = document.getElementById('dark-toggle');
+    toggle?.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Persist dark mode
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
