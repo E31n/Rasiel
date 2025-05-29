@@ -17,7 +17,8 @@ const tags = fs
     .map((file) => {
         const { tag } = generateTags(file);
         return tag;
-    }).reduce((acc, tag) => {
+    })
+    .reduce((acc, tag) => {
         tag.forEach((t) => acc.add(t));
         return acc;
     }, new Set());

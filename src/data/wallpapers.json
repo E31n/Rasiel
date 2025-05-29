@@ -1,42 +1,25 @@
 [
     {
         "title": "Green Nature Road",
-        "tags": [
-            "green nature road",
-            "nature",
-            "road",
-            "phone",
-            "mobile"
-        ],
+        "tags": ["green nature road", "nature", "road", "phone", "mobile"],
         "image": "wallpapers/full/Green-Nature-Road_Nature_Road_Phone_Mobile.jpg",
         "thumbnail": "wallpapers/thumbs/Green-Nature-Road_Nature_Road_Phone_Mobile-thumb.jpg"
     },
     {
         "title": "Overlord",
-        "tags": [
-            "overlord",
-            "albedo",
-            "succubus"
-        ],
+        "tags": ["overlord", "albedo", "succubus"],
         "image": "wallpapers/full/Overlord_Albedo_Succubus.png",
         "thumbnail": "wallpapers/thumbs/Overlord_Albedo_Succubus-thumb.png"
     },
     {
         "title": "Tokyo Ghoul",
-        "tags": [
-            "tokyo ghoul",
-            "ken kaneki",
-            "mask"
-        ],
+        "tags": ["tokyo ghoul", "ken kaneki", "mask"],
         "image": "wallpapers/full/Tokyo-Ghoul_Ken-Kaneki_Mask.jpg",
         "thumbnail": "wallpapers/thumbs/Tokyo-Ghoul_Ken-Kaneki_Mask-thumb.jpg"
     },
     {
         "title": "Your Lie In April",
-        "tags": [
-            "your lie in april",
-            "kaori"
-        ],
+        "tags": ["your lie in april", "kaori"],
         "image": "wallpapers/full/Your-Lie-In-April_Kaori.jpeg",
         "thumbnail": "wallpapers/thumbs/Your-Lie-In-April_Kaori-thumb.jpeg"
     }
