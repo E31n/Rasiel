@@ -9,6 +9,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.8.0"
-  }
+    "@astrojs/svelte": "^7.1.0",
+    "@nobie-org/tailwindcss-animate": "^1.0.9",
+    "@tailwindcss/vite": "^4.1.8",
+    "astro": "^5.8.0",
+    "bits-ui": "^2.3.0",
+    "flexsearch": "^0.8.204",
+    "mode-watcher": "^1.0.7",
+    "phosphor-svelte": "^3.0.1",
+    "tailwindcss": "^4.1.8"
+  },
+  "trustedDependencies": [
+    "@tailwindcss/oxide"
+  ]
 }

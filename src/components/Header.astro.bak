@@ -1,0 +1,26 @@
+---
+const githubUrl = "https://github.com/your-repo";
+---
+
+<header class="flex items-center justify-between px-4 py-3 border-b border-zinc-200 dark:border-zinc-700">
+  <div class="flex items-center space-x-2">
+    <img src="/logo.svg" alt="Logo" class="h-6" />
+    <h1 class="text-lg font-bold">Wallify</h1>
+  </div>
+
+  <div class="flex items-center space-x-4">
+    <input type="text" id="search" placeholder="Search wallpapers..." class="px-2 py-1 text-sm border rounded-md dark:bg-zinc-800 border-zinc-300 dark:border-zinc-600" />
+
+    <button id="dark-toggle" class="text-lg" aria-label="Toggle dark mode">🌓</button>
+
+    <a href={githubUrl} class="text-sm underline hover:opacity-75" target="_blank">GitHub</a>
+  </div>
+</header>
+
+<script type="module">
+  const toggle = document.getElementById('dark-toggle');
+  toggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+  });
+</script>
+

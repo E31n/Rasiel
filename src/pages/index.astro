@@ -1,16 +1,40 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/site-header.svelte';
+import WallpaperCard from '../components/WallpaperCard.astro';
+import wallpapers from '../data/wallpapers.json';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <Header />
+
+  <main class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    {wallpapers.map(w => (
+      <WallpaperCard {...w} />
+    ))}
+  </main>
+
+  <script type="module">
+    const input = document.getElementById('search');
+    input.addEventListener('input', () => {
+      const query = input.value.toLowerCase();
+      const cards = document.querySelectorAll('main > div');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(query) ? 'block' : 'none';
+      });
+    });
+
+    const toggle = document.getElementById('dark-toggle');
+    toggle?.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Persist dark mode
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</BaseLayout>
+
