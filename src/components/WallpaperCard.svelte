@@ -6,14 +6,14 @@
   export let tags: string[] = [];
 </script>
 
-<div class="rounded-3xl shadow-lg hover:shadow-xl p-3 transition-all bg-white dark:bg-zinc-800 overflow-hidden">
+<div class="rounded-xl shadow-lg hover:shadow-xl p-3 transition-all bg-white dark:bg-zinc-800 overflow-hidden">
   <AspectRatio.Root
     ratio={16 / 9}
-    class="rounded-15px w-full bg-transparent"
+    class="rounded-md w-full bg-transparent"
   >
     <img
       src={thumbnail}
-      class="h-full w-full rounded-[15px] object-cover"
+      class="h-full w-full rounded-md object-cover"
       alt={title}
       loading="lazy"
     />

@@ -1,5 +1,6 @@
 <script lang="ts">
   import WallpaperCard from "./WallpaperCard.svelte";
+  import SkeletonCard from "./SkeletonCard.svelte"; // 🔧 You’ll create this
   import { Pagination } from "bits-ui";
   import CaretLeft from "phosphor-svelte/lib/CaretLeft";
   import CaretRight from "phosphor-svelte/lib/CaretRight";
@@ -10,30 +11,39 @@
     tags: string[];
   };
 
-  import rawData from '../data/wallpapers.json';
+  import rawData from "../data/wallpapers.json";
   const wallpaperData: Wallpaper[] = rawData as Wallpaper[];
 
-  // Pagination state
-  let currentPage = $state(1);
-  const perPage = 9;
+  let currentPage = 1;
+  const perPage = 2;
+  let pagedWallpapers: Wallpaper[] = [];
+  let loading = true;
 
-  // Calculate the wallpapers for the current page
-  let pagedWallpapers = $derived(wallpaperData.slice(
-    (currentPage - 1) * perPage,
-    currentPage * perPage
-  ));
+  async function loadWallpapers(page: number) {
+    loading = true;
+    // Simulate a fetch delay
+    await new Promise((res) => setTimeout(res, 500));
+    pagedWallpapers = wallpaperData.slice((page - 1) * perPage, page * perPage);
+    loading = false;
+  }
 
-  // We'll sync Pagination.Root's count & perPage with totalPages and perPage, and also listen to page changes
+  $: loadWallpapers(currentPage); // Auto-run when currentPage changes
 </script>
 
 <main class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-  {#each pagedWallpapers as wallpaper (wallpaper.title)}
-    <WallpaperCard
-      title={wallpaper.title}
-      thumbnail={wallpaper.thumbnail}
-      tags={wallpaper.tags}
-    />
-  {/each}
+  {#if loading}
+    {#each Array(perPage) as _}
+      <SkeletonCard />
+    {/each}
+  {:else}
+    {#each pagedWallpapers as wallpaper (wallpaper.title)}
+      <WallpaperCard
+        title={wallpaper.title}
+        thumbnail={wallpaper.thumbnail}
+        tags={wallpaper.tags}
+      />
+    {/each}
+  {/if}
 </main>
 
 <!-- Bits UI Pagination -->
