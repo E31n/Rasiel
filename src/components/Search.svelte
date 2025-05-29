@@ -2,9 +2,9 @@
 	import MagnifyingGlass from "phosphor-svelte/lib/MagnifyingGlass";
 	import { onMount } from "svelte";
 	import { Button, Command, Dialog } from "bits-ui";
-	import content from "../data/wallpapers.json";
+	import { tags } from "./WallpaperStore.js";
 	import {
-		type SearchContent,
+		// type SearchContent,
 		createContentIndex,
 		searchContentIndex,
 	} from "../utils/search.js";
@@ -13,11 +13,10 @@
 
 	let searchState = $state<"loading" | "ready">("loading");
 	let searchQuery = $state("");
-	let results = $state<SearchContent[]>([]);
+	let results = $state<string[]>([]);
 
 	onMount(async () => {
-		// const content = await fetch("/api/search.json").then((res) => res.json());
-		createContentIndex(content);
+		createContentIndex($tags);
 		searchState = "ready";
 	});
 
@@ -114,16 +113,16 @@
 								<Command.Loading>Loading...</Command.Loading>
 							{/if}
 
-							{#each results as { title, image } (title + image)}
+							{#each results as result}
 								<Command.LinkItem
-									href={image}
+									href={result}
 									class="rounded-button data-selected:bg-muted outline-hidden flex h-10 cursor-pointer select-none items-center gap-2 px-3 py-2.5 text-sm capitalize"
 									onSelect={() => {
 										searchQuery = "";
 										dialogOpen = false;
 									}}
 								>
-									{title}
+									{result}
 								</Command.LinkItem>
 							{/each}
 						</Command.Viewport>

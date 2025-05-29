@@ -1,19 +1,19 @@
 // thanks @joyofcodedev for this :)
 import FlexSearch from 'flexsearch';
 
-export type SearchContent = {
-    title: string;
-    tags: string[];
-    image: string;
-    thumbnail: string;
-};
+// export type SearchContent = {
+//     title: string;
+//     tags: string[];
+//     image: string;
+//     thumbnail: string;
+// };
 
 import type { Index } from 'flexsearch';
 
 let contentIndex: Index;
-let content: SearchContent[] = [];
+let content: string[] = [];
 
-export function createContentIndex(data: SearchContent[]) {
+export function createContentIndex(data: string[]) {
     contentIndex = new FlexSearch.Index({
         tokenize: 'forward',
     });
@@ -21,7 +21,8 @@ export function createContentIndex(data: SearchContent[]) {
     data.forEach((item, i) => {
         contentIndex.add(
             i,
-            `${item.title} ${item.tags.map((tag) => tag).join(' ')}`,
+            item,
+            // `${item.title} ${item.tags.map((tag) => tag).join(' ')}`,
         );
     });
 

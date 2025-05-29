@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from "bits-ui";
-	import { mode, toggleMode } from "./mode-store";
+	import { mode, toggleMode } from "./ModeStore.ts";
 	import { scale } from "svelte/transition";
 	import { cubicOut } from "svelte/easing";
 	import Moon from "phosphor-svelte/lib/Moon";

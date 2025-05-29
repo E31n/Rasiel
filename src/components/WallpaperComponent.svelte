@@ -1,33 +1,42 @@
 <script lang="ts">
+  let tag = $props<string | null>();
+
   import WallpaperCard from "./WallpaperCard.svelte";
   import SkeletonCard from "./SkeletonCard.svelte"; // 🔧 You’ll create this
   import { Pagination } from "bits-ui";
   import CaretLeft from "phosphor-svelte/lib/CaretLeft";
   import CaretRight from "phosphor-svelte/lib/CaretRight";
+  import { wallpapers as wallpaperData } from '../components/WallpaperStore';
+  import type { Wallpaper } from '../components/WallpaperStore';
 
-  type Wallpaper = {
-    title: string;
-    thumbnail: string;
-    tags: string[];
-  };
-
-  import rawData from "../data/wallpapers.json";
-  const wallpaperData: Wallpaper[] = rawData as Wallpaper[];
-
-  let currentPage = 1;
+  let currentPage = $state(1);
   const perPage = 2;
-  let pagedWallpapers: Wallpaper[] = [];
-  let loading = true;
+  let pagedWallpapers: Wallpaper[] = $state([]);
+  let loading = $state(true);
+  
+  let filteredWallpapers = $derived.by(() => {
+    let filteredWallpapers = $wallpaperData;
+    console.log("Current Tag:", tag.tag);
+    if (tag.tag) {
+      return $wallpaperData.filter((wallpaper) =>
+        wallpaper.tags.includes(tag.tag)
+      );
+    }
+    return $wallpaperData;
+  });
 
   async function loadWallpapers(page: number) {
     loading = true;
-    // Simulate a fetch delay
-    await new Promise((res) => setTimeout(res, 500));
-    pagedWallpapers = wallpaperData.slice((page - 1) * perPage, page * perPage);
+    pagedWallpapers = filteredWallpapers.slice(
+      (page - 1) * perPage,
+      page * perPage
+    );
     loading = false;
   }
 
-  $: loadWallpapers(currentPage); // Auto-run when currentPage changes
+  $effect(() => {
+    loadWallpapers(currentPage);
+  });
 </script>
 
 <main class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
@@ -48,7 +57,7 @@
 
 <!-- Bits UI Pagination -->
 <Pagination.Root
-  count={wallpaperData.length}
+  count={filteredWallpapers.length}
   perPage={perPage}
   bind:page={currentPage}
   onPageChange={(page: number) => {
@@ -89,7 +98,7 @@
       </Pagination.NextButton>
     </div>
     <p class="text-muted-foreground text-center text-[13px]">
-      Showing {range.start} - {range.end} of {wallpaperData.length}
+      Showing {range.start} - {range.end} of {filteredWallpapers.length}
     </p>
   {/snippet}
 </Pagination.Root>

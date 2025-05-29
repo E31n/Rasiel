@@ -1,0 +1,25 @@
+---
+// src/pages/tags/[tag].astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.svelte';
+import WallpaperComponent from '../components/WallpaperComponent.svelte';
+import tags from '../data/tags.json';
+
+export async function getStaticPaths() {
+  return tags.map((tag) => ({
+    params: { tag },
+  }));
+}
+
+// Get the tag from the route parameter
+const { tag } = Astro.params;
+---
+
+<head>
+  <title>Wallpapers tagged: {tag}</title>
+</head>
+
+<BaseLayout>
+  <Header client:only />
+  <WallpaperComponent client:only {tag} />
+</BaseLayout>

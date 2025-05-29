@@ -1,7 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/site-header.svelte';
+import Header from '../components/Header.svelte';
 import WallpaperComponent from '../components/WallpaperComponent.svelte';
+import data from '../data/wallpapers.json';
+import { wallpapers } from '../components/WallpaperStore';
 ---
 
 <BaseLayout>
