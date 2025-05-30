@@ -17,7 +17,7 @@
                 <!-- <MobileNav /> -->
 
                 <a
-                    href="/"
+                    href="{import.meta.env.BASE_URL}/"
                     class="focus-visible:ring-foreground focus-visible:ring-offset-background focus-visible:outline-hidden ml-2 rounded-md focus-visible:ring-2 focus-visible:ring-offset-2 md:mr-[125px]"
                 >
                     <Logo />
