@@ -10,5 +10,5 @@ export default defineConfig({
         plugins: [tailwindcss()],
     },
     site: 'https://E13n.github.io',
-    base: '/Raziel',
+    base: '/',
 });
