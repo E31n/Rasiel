@@ -4,7 +4,7 @@ dist/
 .astro/
 
 # wallpapers and data (while developing)
-public/wallpapers/
+public/wallpapers/thumbs
 src/data/
 
 # dependencies

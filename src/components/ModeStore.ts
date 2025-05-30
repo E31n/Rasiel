@@ -6,8 +6,6 @@ const LOCAL_STORAGE_KEY = 'mode';
 const mode = writable<'light' | 'dark'>('dark');
 
 function initMode() {
-    console.log('Initializing mode store...');
-
     if (typeof window === 'undefined') return; // SSR guard
 
     const saved = localStorage.getItem(LOCAL_STORAGE_KEY);

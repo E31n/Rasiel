@@ -1,8 +1,12 @@
-<script>
+<script lang="ts">
     import MagnifyingGlass from 'phosphor-svelte/lib/MagnifyingGlass';
     import { onMount } from 'svelte';
-    import { Button, Command, Dialog } from 'bits-ui';
-    import { tags, filteredWallpapers, wallpapers } from './WallpaperStore.js';
+    import {
+        tags,
+        filteredWallpapers,
+        wallpapers,
+        type Wallpaper,
+    } from './WallpaperStore.js';
     import {
         createContentIndex,
         searchContentIndex,
@@ -15,10 +19,11 @@
         Repeat,
     } from 'phosphor-svelte';
 
-    let searchInputRef;
+    let searchInputRef: HTMLInputElement | null = null;
 
     let searchState = $state('loading');
     let searchQuery = $state('');
+    let debounceTimeout: NodeJS.Timeout | null = null;
 
     onMount(async () => {
         createContentIndex($tags);
@@ -27,31 +32,43 @@
 
     $effect(() => {
         if (searchState !== 'ready') return;
+        
         if (searchQuery.trim() === '') {
-            filteredWallpapers.set($wallpapers);
+            filteredWallpapers.set(
+                selectedCategory === 'All' 
+                ? $wallpapers
+                : $wallpapers.filter((w) => w.tags.includes(selectedCategory.toLowerCase()))
+            );
             return;
         }
-        let results = searchContentIndex(searchQuery);
-        results = results.reduce((acc, result) => {
-            const filtered = $wallpapers.filter((w) => w.tags.includes(result));
-            filtered.forEach((w) => acc.add(w));
-            return acc;
-        }, new Set());
-        // console.log('Search results:', results);
-        filteredWallpapers.set(Array.from(results));
+
+        if (debounceTimeout) clearTimeout(debounceTimeout);
+
+        debounceTimeout = setTimeout(() => {
+            const results = searchContentIndex(searchQuery);
+            const filtered = new Set<Wallpaper>();
+
+            for (const result of results) {
+                $wallpapers
+                    .filter((w) => w.tags.includes(result) && (selectedCategory === 'All' || w.tags.includes(selectedCategory.toLowerCase())))
+                    .forEach((w) => filtered.add(w));
+            }
+
+            filteredWallpapers.set(Array.from(filtered));
+        }, 500);
     });
 
     let dialogOpen = $state(false);
     let selectedCategory = $state('All');
 
-    function selectOption(value) {
+    function selectOption(value: string) {
         selectedCategory = value;
     }
 
     // Optional: close dropdown when clicking outside
     document.addEventListener('click', (e) => {
         const trigger = document.getElementById('custom-select-trigger');
-        if (!trigger.contains(e.target)) {
+        if (!trigger?.contains(e.target as Node)) {
             dialogOpen = false;
         }
     });
