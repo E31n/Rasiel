@@ -44,7 +44,7 @@
             class="rounded-md w-full bg-transparent group relative overflow-hidden"
         >
             <img
-                src={`/${thumbnail}`}
+                src={`${import.meta.env.BASE_URL + thumbnail}`}
                 class="h-full w-full rounded-md object-cover group-hover:scale-110 transition-transform"
                 alt={title}
                 loading="eager"

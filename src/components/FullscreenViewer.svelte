@@ -17,8 +17,8 @@
     let { idx, closeViewer } = $props();
 
     let currIdx = $state(idx);
-    let imgUrl = $derived($filteredWallpapers[currIdx].image);
-    let thumbUrl = $derived($filteredWallpapers[currIdx].thumbnail);
+    let imgUrl = $derived(import.meta.env.BASE_URL + $filteredWallpapers[currIdx].image);
+    let thumbUrl = $derived(import.meta.env.BASE_URL + $filteredWallpapers[currIdx].thumbnail);
 
     let isLoaded = $derived(imgUrl !== undefined);
     let modalRef;
