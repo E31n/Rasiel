@@ -9,7 +9,7 @@ export default defineConfig({
     vite: {
         plugins: [tailwindcss()],
     },
-    site: 'https://e13n.github.io',
+    site: 'https://e31n.github.io',
     base: '/Rasiel/',
     trailingSlash: 'never',
     output: 'static',
