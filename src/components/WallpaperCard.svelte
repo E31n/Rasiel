@@ -3,7 +3,8 @@
     import { onMount } from 'svelte';
     import { AspectRatio, Button } from 'bits-ui';
     import SkeletonCard from './SkeletonCard.svelte';
-    import { Download } from 'phosphor-svelte';
+    import { CornersOut, Download } from 'phosphor-svelte';
+    import FullscreenViewer from './icons/FullscreenViewer.svelte';
 
     export let title: string;
     export let image: string;
@@ -28,14 +29,24 @@
     >
         <AspectRatio.Root
             ratio={16 / 9}
-            class="rounded-md w-full bg-transparent relative overflow-hidden"
+            class="rounded-md w-full bg-transparent group relative overflow-hidden"
         >
             <img
                 src={`/${thumbnail}`}
-                class="h-full w-full rounded-md object-cover"
+                class="h-full w-full rounded-md object-cover group-hover:scale-110 transition-transform"
                 alt={title}
                 loading="eager"
             />
+            <div
+                class="absolute inset-0 bg-background/30 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none grid place-items-center"
+                aria-hidden="true"
+            >
+                <!-- <CornersOut /> -->
+                <FullscreenViewer
+                    imgUrl={image}
+                    thumbUrl={thumbnail}
+                />
+            </div>
             <Button.Root
                 class="font-xl bg-foreground/60 text-background p-2 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex absolute bottom-2 right-2 backdrop-blur-md"
                 href={`/${image}`}

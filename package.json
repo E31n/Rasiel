@@ -25,6 +25,7 @@
         "phosphor-svelte": "^3.0.1",
         "prettier": "^3.5.3",
         "sharp": "^0.34.2",
+        "svelte-portal": "^2.2.1",
         "svelte-transition": "^0.0.17",
         "tailwindcss": "^4.1.8"
     },
