@@ -1,0 +1,25 @@
+---
+// src/pages/c/[category].astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.svelte';
+import WallpaperComponent from '../../components/WallpaperComponent.svelte';
+
+export async function getStaticPaths() {
+    return [
+        { params: { category: 'mobile' } },
+        { params: { category: 'desktop' } },
+    ]
+}
+
+// Get the tag from the route parameter
+const { category } = Astro.params;
+---
+
+<head>
+    <title>{category} Wallpapers</title>
+</head>
+
+<BaseLayout>
+    <Header client:only />
+    <WallpaperComponent client:only tag={category} />
+</BaseLayout>

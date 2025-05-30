@@ -29,10 +29,10 @@
             class="rounded-md w-full bg-transparent"
         >
             <img
-                src={thumbnail}
+                src={`/${thumbnail}`}
                 class="h-full w-full rounded-md object-cover"
                 alt={title}
-                loading="lazy"
+                loading="eager"
             />
         </AspectRatio.Root>
         <div class="p-4">

@@ -17,6 +17,7 @@
         "@tailwindcss/vite": "^4.1.8",
         "astro": "^5.8.0",
         "bits-ui": "^2.3.0",
+        "fast-glob": "^3.3.3",
         "flexsearch": "^0.8.204",
         "mode-watcher": "^1.0.7",
         "phosphor-svelte": "^3.0.1",

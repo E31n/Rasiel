@@ -10,12 +10,11 @@
     import type { Wallpaper } from '../components/WallpaperStore';
 
     let currentPage = $state(1);
-    const perPage = 2;
+    const perPage = 9;
     let pagedWallpapers: Wallpaper[] = $state([]);
     let loading = $state(true);
 
     let filteredWallpapers = $derived.by(() => {
-        let filteredWallpapers = $wallpaperData;
         console.log('Current Tag:', tag.tag);
         if (tag.tag) {
             return $wallpaperData.filter((wallpaper) =>
@@ -47,7 +46,7 @@
             <SkeletonCard />
         {/each}
     {:else}
-        {#each pagedWallpapers as wallpaper (wallpaper.title)}
+        {#each pagedWallpapers as wallpaper (wallpaper.thumbnail)}
             <WallpaperCard
                 title={wallpaper.title}
                 thumbnail={wallpaper.thumbnail}

@@ -3,6 +3,10 @@ dist/
 # generated types
 .astro/
 
+# wallpapers and data (while developing)
+public/wallpapers/
+src/data/
+
 # dependencies
 node_modules/
 
