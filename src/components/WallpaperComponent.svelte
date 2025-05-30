@@ -48,7 +48,8 @@
     {:else}
         {#each pagedWallpapers as wallpaper (wallpaper.thumbnail)}
             <WallpaperCard
-                title={wallpaper.title}
+            title={wallpaper.title}
+            image={wallpaper.image}
                 thumbnail={wallpaper.thumbnail}
                 tags={wallpaper.tags}
             />

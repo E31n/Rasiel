@@ -7,6 +7,7 @@ export const tags = readable(tagdata);
 
 export type Wallpaper = {
     title: string;
+    image: string;
     thumbnail: string;
     tags: string[];
 };

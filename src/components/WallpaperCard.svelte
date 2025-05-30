@@ -3,8 +3,10 @@
     import { onMount } from 'svelte';
     import { AspectRatio, Button } from 'bits-ui';
     import SkeletonCard from './SkeletonCard.svelte';
+    import { Download } from 'phosphor-svelte';
 
     export let title: string;
+    export let image: string;
     export let thumbnail: string;
     export let tags: string[] = [];
 
@@ -26,7 +28,7 @@
     >
         <AspectRatio.Root
             ratio={16 / 9}
-            class="rounded-md w-full bg-transparent"
+            class="rounded-md w-full bg-transparent relative overflow-hidden"
         >
             <img
                 src={`/${thumbnail}`}
@@ -34,10 +36,16 @@
                 alt={title}
                 loading="eager"
             />
+            <Button.Root
+                class="font-xl bg-foreground/60 text-background p-2 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex absolute bottom-2 right-2 backdrop-blur-md"
+                href={`/${image}`}
+                download="{thumbnail.slice(thumbnail.lastIndexOf('/')+1).slice(0, -11) + image.slice(image.lastIndexOf('.'))}"
+            >
+                <Download />
+            </Button.Root>
         </AspectRatio.Root>
-        <div class="p-4">
-            <h3 class="font-bold text-lg text-foreground">{title}</h3>
-
+        <div class="p-0.5 pt-1">
+            <!-- <h3 class="font-bold text-lg text-foreground">{title}</h3> -->
             <div class="mt-2 flex flex-wrap gap-2">
                 {#each tags as tag}
                     <Button.Root

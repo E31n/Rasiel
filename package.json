@@ -9,7 +9,9 @@
         "astro": "astro",
         "format": "prettier --write .",
         "genjson": "node scripts/generate-json.js",
-        "genthumbs": "node scripts/generate-thumbs.js"
+        "genthumbs": "node scripts/generate-thumbs.js",
+        "gentags": "node scripts/generate-tags.js",
+        "genall": "bun run genjson && bun run genthumbs && bun run gentags"
     },
     "dependencies": {
         "@astrojs/svelte": "^7.1.0",
