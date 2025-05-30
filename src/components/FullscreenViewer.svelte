@@ -4,14 +4,14 @@
     import { portal } from 'svelte-portal';
     import { scale } from 'svelte/transition';
     import { onMount } from 'svelte';
-    import { wallpapers } from './WallpaperStore';
+    import { filteredWallpapers } from './WallpaperStore';
     import ImageWithPlaceholder from './ImageWithPlaceholder.svelte';
 
     let {idx, closeViewer} = $props();
 
     let currIdx = $state(idx);
-    let imgUrl = $derived($wallpapers[currIdx].image);
-    let thumbUrl = $derived($wallpapers[currIdx].thumbnail);
+    let imgUrl = $derived($filteredWallpapers[currIdx].image);
+    let thumbUrl = $derived($filteredWallpapers[currIdx].thumbnail);
 
     let isLoaded = $derived(imgUrl !== undefined);
     let modalRef;
@@ -20,9 +20,9 @@
     let changeIdx = (e, direction) => {
         e.stopPropagation();
         if (direction === "left") {
-            currIdx = currIdx > 0 ? currIdx - 1 : $wallpapers.length - 1;
+            currIdx = currIdx > 0 ? currIdx - 1 : $filteredWallpapers.length - 1;
         } else if (direction === "right") {
-            currIdx = currIdx < $wallpapers.length - 1 ? currIdx + 1 : 0;
+            currIdx = currIdx < $filteredWallpapers.length - 1 ? currIdx + 1 : 0;
         }
     };
 
@@ -116,23 +116,23 @@
 
     <!-- Left Caret Button -->
     <Button.Root
-        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 transition-colors backdrop-blur-md p-3 py-7 rounded-lg"
+        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 transition-colors backdrop-blur-md p-3 py-7 rounded-lg cursor-pointer"
         onclick={(e) => changeIdx(e, "left")}
     >
         <CaretLeft
             size={32}
-            class="text-background cursor-pointer hover:opacity-80 transition-opacity"
+            class="text-background hover:opacity-80 transition-opacity"
         />
     </Button.Root>
     
     <!-- Right Caret Button -->
     <Button.Root
-        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 transition-colors backdrop-blur-md p-3 py-7 rounded-lg"
+        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 transition-colors backdrop-blur-md p-3 py-7 rounded-lg cursor-pointer"
         onclick={(e) => changeIdx(e, "right")}
     >
         <CaretRight
             size={32}
-            class="text-background cursor-pointer hover:opacity-80 transition-opacity"
+            class="text-background hover:opacity-80 transition-opacity"
         />
     </Button.Root>
 

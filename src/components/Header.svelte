@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Button } from 'bits-ui';
-    import Search from './Search.svelte';
+    import Search from './SearchTags.svelte';
     import { Logo } from './icons/index.js';
     import LightSwitch from './LightSwitch.svelte';
     //	import MobileNav from "./navigation/mobile-nav.svelte";

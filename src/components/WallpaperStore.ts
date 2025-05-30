@@ -1,4 +1,4 @@
-import { readable } from 'svelte/store';
+import { readable, writable } from 'svelte/store';
 import data from '../data/wallpapers.json';
 import tagdata from '../data/tags.json';
 
@@ -20,5 +20,6 @@ function shuffleArray(array: Wallpaper[]): Wallpaper[] {
 
 const wallpapers = readable(shuffleArray(data));
 const tags = readable(tagdata);
+const filteredWallpapers = writable<Wallpaper[]>([]);
 
-export { wallpapers, tags };
+export { wallpapers, tags, filteredWallpapers };

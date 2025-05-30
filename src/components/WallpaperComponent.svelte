@@ -6,7 +6,7 @@
     import { Pagination } from 'bits-ui';
     import CaretLeft from 'phosphor-svelte/lib/CaretLeft';
     import CaretRight from 'phosphor-svelte/lib/CaretRight';
-    import { wallpapers as wallpaperData } from '../components/WallpaperStore';
+    import { wallpapers as wallpaperData, filteredWallpapers } from '../components/WallpaperStore';
     import type { Wallpaper } from '../components/WallpaperStore';
 
     let currentPage = $state(1);
@@ -14,18 +14,17 @@
     let pagedWallpapers: Wallpaper[] = $state([]);
     let loading = $state(true);
 
-    let filteredWallpapers = $derived.by(() => {
-        if (tag.tag) {
-            return $wallpaperData.filter((wallpaper) =>
+    filteredWallpapers.set(
+        (tag.tag) ?
+            $wallpaperData.filter((wallpaper) =>
                 wallpaper.tags.includes(tag.tag),
-            );
-        }
-        return $wallpaperData;
-    });
+            ) :
+        $wallpaperData
+    );
 
     async function loadWallpapers(page: number) {
         loading = true;
-        pagedWallpapers = filteredWallpapers.slice(
+        pagedWallpapers = $filteredWallpapers.slice(
             (page - 1) * perPage,
             page * perPage,
         );
@@ -59,7 +58,7 @@
 
 <!-- Bits UI Pagination -->
 <Pagination.Root
-    count={filteredWallpapers.length}
+    count={$filteredWallpapers.length}
     {perPage}
     bind:page={currentPage}
     onPageChange={(page: number) => {
@@ -100,7 +99,7 @@
             </Pagination.NextButton>
         </div>
         <p class="text-muted-foreground text-center text-[13px]">
-            Showing {range.start} - {range.end} of {filteredWallpapers.length}
+            Showing {range.start} - {range.end} of {$filteredWallpapers.length}
         </p>
     {/snippet}
 </Pagination.Root>
