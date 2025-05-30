@@ -6,14 +6,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@font-face {
-    font-family: 'Cal Sans', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url('/CalSans-SemiBold.woff2') format('woff2');
-}
-
 :root {
     /* Colors */
     --background: hsl(0 0% 100%);
@@ -145,7 +137,7 @@
     --font-sans: 'Inter', sans-serif;
     --font-mono: 'Source Code Pro', monospace;
     --font-alt: 'Courier', sans-serif;
-    --font-display: 'Cal Sans', sans-serif;
+    --font-display: 'Inter', sans-serif;
 
     @keyframes accordion-down {
         from {
