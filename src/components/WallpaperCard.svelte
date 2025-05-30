@@ -65,9 +65,9 @@
             <Button.Root
                 class="font-xl bg-foreground/60 text-background p-2 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex absolute bottom-2 right-2 backdrop-blur-md"
                 href={`/${image}`}
-                download={thumbnail
+                download={`${import.meta.env.BASE_URL}/${thumbnail
                     .slice(thumbnail.lastIndexOf('/') + 1)
-                    .slice(0, -11) + image.slice(image.lastIndexOf('.'))}
+                    .slice(0, -11) + image.slice(image.lastIndexOf('.'))}`}
             >
                 <Download />
             </Button.Root>

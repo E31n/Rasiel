@@ -94,7 +94,7 @@
         <!-- Download Button -->
         <Button.Root
             class="font-xl bg-foreground/60 text-background p-2 px-2.5 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex items-center justify-center gap-2 backdrop-blur-md"
-            href={`/${imgUrl}`}
+            href={`${import.meta.env.BASE_URL}/${imgUrl}`}
             title="Download Image"
             download={thumbUrl
                 .slice(thumbUrl.lastIndexOf('/') + 1)
