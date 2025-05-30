@@ -64,10 +64,10 @@
             </div>
             <Button.Root
                 class="font-xl bg-foreground/60 text-background p-2 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex absolute bottom-2 right-2 backdrop-blur-md"
-                href={`/${image}`}
-                download={`${import.meta.env.BASE_URL}/${thumbnail
+                href={`${import.meta.env.BASE_URL}/${image}`}
+                download={thumbnail
                     .slice(thumbnail.lastIndexOf('/') + 1)
-                    .slice(0, -11) + image.slice(image.lastIndexOf('.'))}`}
+                    .slice(0, -11) + image.slice(image.lastIndexOf('.'))}
             >
                 <Download />
             </Button.Root>
@@ -78,7 +78,7 @@
                 {#each tags as tag}
                     <Button.Root
                         class="text-xs font-medium bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-100 px-2 py-0.5 pb-1 rounded-sm hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors cursor-pointer"
-                        href={`/${tag}`}
+                        href={`${import.meta.env.BASE_URL}/${tag}`}
                     >
                         {tag}
                     </Button.Root>
