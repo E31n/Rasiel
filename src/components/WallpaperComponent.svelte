@@ -45,12 +45,13 @@
             <SkeletonCard />
         {/each}
     {:else}
-        {#each pagedWallpapers as wallpaper (wallpaper.thumbnail)}
+        {#each pagedWallpapers as wallpaper, i (wallpaper.thumbnail)}
             <WallpaperCard
                 title={wallpaper.title}
                 image={wallpaper.image}
                 thumbnail={wallpaper.thumbnail}
                 tags={wallpaper.tags}
+                idx={i + (currentPage - 1) * perPage}
             />
         {/each}
     {/if}

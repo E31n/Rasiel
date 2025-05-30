@@ -10,6 +10,7 @@
     export let image: string;
     export let thumbnail: string;
     export let tags: string[] = [];
+    export let idx: number;
 
     let isViewerOpen = false;
     let isLoading = true;
@@ -59,8 +60,7 @@
                 />
                 {#if isViewerOpen}
                     <FullscreenViewer
-                        imgUrl={`/${image}`}
-                        thumbUrl={`/${thumbnail}`}
+                        {idx}
                         {closeViewer}
                     />
                 {/if}
