@@ -1,7 +1,7 @@
 import { defineSiteConfig } from '../utils/use-site-config.svelte.js';
 
 export const siteConfig = defineSiteConfig({
-    name: 'Bits UI',
+    name: 'Raziel',
     url: 'https://www.bits-ui.com',
     description:
         'Headless components for Svelte - flexible, unstyled, and accessible primitives that provide the foundation for building your own high-quality component library.',

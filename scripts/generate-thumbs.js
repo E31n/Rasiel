@@ -4,9 +4,11 @@ import sharp from 'sharp';
 
 const inputDir = path.join('public', 'wallpapers', 'full');
 const outputDir = path.join('public', 'wallpapers', 'thumbs');
+const dataDir = path.join('src', 'data');
 
 // Create output directory if it doesn't exist
 fs.mkdirSync(outputDir, { recursive: true });
+fs.mkdirSync(dataDir, { recursive: true });
 
 if (!fs.existsSync(inputDir)) {
     console.error(`Input directory "${inputDir}" does not exist.`);

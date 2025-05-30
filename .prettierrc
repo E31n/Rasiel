@@ -17,6 +17,5 @@
     "plugins": ["prettier-plugin-svelte", "prettier-plugin-astro"],
     "svelteSortOrder": "scripts-options-markup-styles",
     "svelteStrictMode": false,
-    "svelteBracketNewLine": true,
     "svelteAllowShorthand": true
 }

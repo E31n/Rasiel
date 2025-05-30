@@ -32,12 +32,14 @@
 
     $effect(() => {
         if (searchState !== 'ready') return;
-        
+
         if (searchQuery.trim() === '') {
             filteredWallpapers.set(
-                selectedCategory === 'All' 
-                ? $wallpapers
-                : $wallpapers.filter((w) => w.tags.includes(selectedCategory.toLowerCase()))
+                selectedCategory === 'All'
+                    ? $wallpapers
+                    : $wallpapers.filter((w) =>
+                          w.tags.includes(selectedCategory.toLowerCase()),
+                      ),
             );
             return;
         }
@@ -50,7 +52,14 @@
 
             for (const result of results) {
                 $wallpapers
-                    .filter((w) => w.tags.includes(result) && (selectedCategory === 'All' || w.tags.includes(selectedCategory.toLowerCase())))
+                    .filter(
+                        (w) =>
+                            w.tags.includes(result) &&
+                            (selectedCategory === 'All' ||
+                                w.tags.includes(
+                                    selectedCategory.toLowerCase(),
+                                )),
+                    )
                     .forEach((w) => filtered.add(w));
             }
 
