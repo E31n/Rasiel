@@ -10,7 +10,10 @@ if (!fs.existsSync(fullDir)) {
 }
 
 function generateJSON(filename) {
-    const name = path.relative(fullDir, filename).replace(/[//\/]/g, '_').replace(/\.(\w+)$/, '');
+    const name = path
+        .relative(fullDir, filename)
+        .replace(/[//\/]/g, '_')
+        .replace(/\.(\w+)$/, '');
     const nameWithSpaces = name.replace(/[-]/g, ' ');
     const words = nameWithSpaces.split(/[_]/);
     const title = words[0].charAt(0).toUpperCase() + words[0].slice(1);
@@ -26,8 +29,7 @@ function readDirRecursive(dir) {
         const fullPath = path.join(dir, file);
         if (fs.statSync(fullPath).isDirectory()) {
             readDirRecursive(fullPath + path.sep);
-        }
-        else {
+        } else {
             wallpapersRaw.push(dir + file);
         }
     });
@@ -35,19 +37,21 @@ function readDirRecursive(dir) {
 
 readDirRecursive(fullDir);
 
-let wallpapers = wallpapersRaw
-    .map((file) => {
-        const { title, tags } = generateJSON(file);
-        return {
-            title,
-            tags,
-            image: path.relative("public", file),
-            thumbnail: path.join(
-                thumbDir,
-                path.relative(fullDir, file).replace(/[\\\/]/g, '_').replace(/\.(\w+)$/, '-thumb.webp'),
-            ),
-        };
-    });
+let wallpapers = wallpapersRaw.map((file) => {
+    const { title, tags } = generateJSON(file);
+    return {
+        title,
+        tags,
+        image: path.relative('public', file),
+        thumbnail: path.join(
+            thumbDir,
+            path
+                .relative(fullDir, file)
+                .replace(/[\\\/]/g, '_')
+                .replace(/\.(\w+)$/, '-thumb.webp'),
+        ),
+    };
+});
 
 fs.writeFileSync(
     path.join('src', 'data', 'wallpapers.json'),

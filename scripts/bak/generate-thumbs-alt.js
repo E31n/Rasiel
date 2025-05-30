@@ -1,9 +1,9 @@
-import fg from "fast-glob";
-import sharp from "sharp";
-import fs from "fs";
+import fg from 'fast-glob';
+import sharp from 'sharp';
+import fs from 'fs';
 
-const inputDir = "public/wallpapers/full";
-const outputDir = "public/wallpapers/thumbs";
+const inputDir = 'public/wallpapers/full';
+const outputDir = 'public/wallpapers/thumbs';
 
 fs.mkdirSync(outputDir, { recursive: true });
 
@@ -16,5 +16,10 @@ const files = await fg(`${inputDir}/**/*.*`);
 files.forEach((file) => {
     sharp(file)
         .resize(300)
-        .toFile(`${outputDir}/${file.slice(inputDir.length + 1).replace(/[\/\\]/g, '_').replace(/\.(\w+)$/, '-thumb.$1')}`);
+        .toFile(
+            `${outputDir}/${file
+                .slice(inputDir.length + 1)
+                .replace(/[\/\\]/g, '_')
+                .replace(/\.(\w+)$/, '-thumb.$1')}`,
+        );
 });

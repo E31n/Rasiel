@@ -15,7 +15,6 @@
     let loading = $state(true);
 
     let filteredWallpapers = $derived.by(() => {
-        console.log('Current Tag:', tag.tag);
         if (tag.tag) {
             return $wallpaperData.filter((wallpaper) =>
                 wallpaper.tags.includes(tag.tag),
@@ -48,8 +47,8 @@
     {:else}
         {#each pagedWallpapers as wallpaper (wallpaper.thumbnail)}
             <WallpaperCard
-            title={wallpaper.title}
-            image={wallpaper.image}
+                title={wallpaper.title}
+                image={wallpaper.image}
                 thumbnail={wallpaper.thumbnail}
                 tags={wallpaper.tags}
             />

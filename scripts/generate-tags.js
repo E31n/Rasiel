@@ -9,7 +9,10 @@ if (!fs.existsSync(fullDir)) {
 }
 
 function generateTags(filename) {
-    const name = path.relative(fullDir, filename).replace(/[//\/]/g, '_').replace(/\.(\w+)$/, '');
+    const name = path
+        .relative(fullDir, filename)
+        .replace(/[//\/]/g, '_')
+        .replace(/\.(\w+)$/, '');
     const nameWithSpaces = name.replace(/[-]/g, ' ');
     const words = nameWithSpaces.split(/[_]/);
     const tags = [...new Set(words.map((w) => w.toLowerCase()))];
@@ -24,8 +27,7 @@ function readDirRecursive(dir) {
         const fullPath = path.join(dir, file);
         if (fs.statSync(fullPath).isDirectory()) {
             readDirRecursive(fullPath + path.sep);
-        }
-        else {
+        } else {
             wallpapersRaw.push(dir + file);
         }
     });
