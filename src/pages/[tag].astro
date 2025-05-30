@@ -16,10 +16,11 @@ const { tag } = Astro.params;
 ---
 
 <head>
-    <title>Wallpapers tagged: {tag}</title>
+    <title>{tag[0].toUpperCase() + tag.slice(1)}</title>
 </head>
 
 <BaseLayout>
     <Header client:only />
+    <h1 class="text-5xl font-bold p-5 pt-8 text-center">{tag[0].toUpperCase() + tag.slice(1)} Wallpapers</h1>
     <WallpaperComponent client:only {tag} />
 </BaseLayout>

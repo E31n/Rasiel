@@ -1,10 +1,10 @@
 <script>
     import { Button } from 'bits-ui';
-    import { X, Download, CaretLeft, CaretRight } from 'phosphor-svelte';
+    import { X, Download, CaretLeft, CaretRight, Play, Pause } from 'phosphor-svelte';
     import { portal } from 'svelte-portal';
     import { scale } from 'svelte/transition';
     import { onMount } from 'svelte';
-    import { wallpapers } from '../WallpaperStore';
+    import { wallpapers } from './WallpaperStore';
     import ImageWithPlaceholder from './ImageWithPlaceholder.svelte';
 
     let {idx, closeViewer} = $props();
@@ -15,6 +15,7 @@
 
     let isLoaded = $derived(imgUrl !== undefined);
     let modalRef;
+    let slideshowInterval = $state(null);
 
     let changeIdx = (e, direction) => {
         e.stopPropagation();
@@ -26,12 +27,27 @@
     };
 
     let handleKeydown = (e) => {
+        e.stopPropagation();
         if (e.key === 'Escape') {
             closeViewer();
         } else if (e.key === 'ArrowLeft') {
             changeIdx(e, "left");
         } else if (e.key === 'ArrowRight') {
             changeIdx(e, "right");
+        } else if (e.key === ' ') {
+            toggleSlideshow(e);
+        }
+    };
+
+    let toggleSlideshow = (e) => {
+        e.stopPropagation();
+        if (slideshowInterval) {
+            clearInterval(slideshowInterval);
+            slideshowInterval = null;
+        } else {
+            slideshowInterval = setInterval(() => {
+                changeIdx(e, "right");
+            }, 5000);
         }
     };
 
@@ -98,6 +114,7 @@
         </Button.Root>
     </div>
 
+    <!-- Left Caret Button -->
     <Button.Root
         class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 transition-colors backdrop-blur-md p-3 py-7 rounded-lg"
         onclick={(e) => changeIdx(e, "left")}
@@ -108,6 +125,7 @@
         />
     </Button.Root>
     
+    <!-- Right Caret Button -->
     <Button.Root
         class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 transition-colors backdrop-blur-md p-3 py-7 rounded-lg"
         onclick={(e) => changeIdx(e, "right")}
@@ -116,5 +134,23 @@
             size={32}
             class="text-background cursor-pointer hover:opacity-80 transition-opacity"
         />
+    </Button.Root>
+
+    <!-- SlideShow Button -->
+     <Button.Root
+        class="font-xl bg-foreground/60 text-background p-2 px-2.5 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex items-center justify-center gap-2 backdrop-blur-md absolute bottom-4 right-4"
+        title="Start Slideshow"
+        onclick={toggleSlideshow}
+    >
+        {#if slideshowInterval}
+            <Pause size={20} />
+        {:else}
+            <Play size={20} />
+        {/if}
+        {#if slideshowInterval}
+            Stop Slideshow
+        {:else}
+            Start Slideshow
+        {/if}
     </Button.Root>
 </div>

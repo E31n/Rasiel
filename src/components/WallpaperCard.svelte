@@ -4,7 +4,7 @@
     import { AspectRatio, Button } from 'bits-ui';
     import SkeletonCard from './SkeletonCard.svelte';
     import { CornersOut, Download } from 'phosphor-svelte';
-    import FullscreenViewer from './icons/FullscreenViewer.svelte';
+    import FullscreenViewer from './FullscreenViewer.svelte';
 
     export let title: string;
     export let image: string;
