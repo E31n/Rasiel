@@ -6,7 +6,10 @@
     import { Pagination } from 'bits-ui';
     import CaretLeft from 'phosphor-svelte/lib/CaretLeft';
     import CaretRight from 'phosphor-svelte/lib/CaretRight';
-    import { wallpapers as wallpaperData, filteredWallpapers } from '../components/WallpaperStore';
+    import {
+        wallpapers as wallpaperData,
+        filteredWallpapers,
+    } from '../components/WallpaperStore';
     import type { Wallpaper } from '../components/WallpaperStore';
 
     let currentPage = $state(1);
@@ -15,11 +18,11 @@
     let loading = $state(true);
 
     filteredWallpapers.set(
-        (tag.tag) ?
-            $wallpaperData.filter((wallpaper) =>
-                wallpaper.tags.includes(tag.tag),
-            ) :
-        $wallpaperData
+        tag.tag
+            ? $wallpaperData.filter((wallpaper) =>
+                  wallpaper.tags.includes(tag.tag),
+              )
+            : $wallpaperData,
     );
 
     async function loadWallpapers(page: number) {

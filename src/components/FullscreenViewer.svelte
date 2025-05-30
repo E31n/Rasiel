@@ -1,13 +1,20 @@
 <script>
     import { Button } from 'bits-ui';
-    import { X, Download, CaretLeft, CaretRight, Play, Pause } from 'phosphor-svelte';
+    import {
+        X,
+        Download,
+        CaretLeft,
+        CaretRight,
+        Play,
+        Pause,
+    } from 'phosphor-svelte';
     import { portal } from 'svelte-portal';
     import { scale } from 'svelte/transition';
     import { onMount } from 'svelte';
     import { filteredWallpapers } from './WallpaperStore';
     import ImageWithPlaceholder from './ImageWithPlaceholder.svelte';
 
-    let {idx, closeViewer} = $props();
+    let { idx, closeViewer } = $props();
 
     let currIdx = $state(idx);
     let imgUrl = $derived($filteredWallpapers[currIdx].image);
@@ -19,10 +26,12 @@
 
     let changeIdx = (e, direction) => {
         e.stopPropagation();
-        if (direction === "left") {
-            currIdx = currIdx > 0 ? currIdx - 1 : $filteredWallpapers.length - 1;
-        } else if (direction === "right") {
-            currIdx = currIdx < $filteredWallpapers.length - 1 ? currIdx + 1 : 0;
+        if (direction === 'left') {
+            currIdx =
+                currIdx > 0 ? currIdx - 1 : $filteredWallpapers.length - 1;
+        } else if (direction === 'right') {
+            currIdx =
+                currIdx < $filteredWallpapers.length - 1 ? currIdx + 1 : 0;
         }
     };
 
@@ -31,9 +40,9 @@
         if (e.key === 'Escape') {
             closeViewer();
         } else if (e.key === 'ArrowLeft') {
-            changeIdx(e, "left");
+            changeIdx(e, 'left');
         } else if (e.key === 'ArrowRight') {
-            changeIdx(e, "right");
+            changeIdx(e, 'right');
         } else if (e.key === ' ') {
             toggleSlideshow(e);
         }
@@ -46,7 +55,7 @@
             slideshowInterval = null;
         } else {
             slideshowInterval = setInterval(() => {
-                changeIdx(e, "right");
+                changeIdx(e, 'right');
             }, 5000);
         }
     };
@@ -70,23 +79,26 @@
     tabindex="-1"
     in:scale={{ opacity: 0, duration: 300 }}
 >
-
     <!-- Loader -->
     {#if !isLoaded}
-    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-80 z-10">
-        <div class="loader w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-    </div>
+        <div
+            class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-80 z-10"
+        >
+            <div
+                class="loader w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"
+            ></div>
+        </div>
     {/if}
 
     <!-- Image -->
     {#key imgUrl}
         <ImageWithPlaceholder
-        src={imgUrl}
-        alt="Fullscreen Preview"
-        className="w-screen h-screen object-cover"
-        style="cursor: zoom-out"
-        onload={() => isLoaded = true}
-        placeholderSrc={thumbUrl}
+            src={imgUrl}
+            alt="Fullscreen Preview"
+            className="w-screen h-screen object-cover"
+            style="cursor: zoom-out"
+            onload={() => (isLoaded = true)}
+            placeholderSrc={thumbUrl}
         />
     {/key}
 
@@ -117,18 +129,18 @@
     <!-- Left Caret Button -->
     <Button.Root
         class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 transition-colors backdrop-blur-md p-3 py-7 rounded-lg cursor-pointer"
-        onclick={(e) => changeIdx(e, "left")}
+        onclick={(e) => changeIdx(e, 'left')}
     >
         <CaretLeft
             size={32}
             class="text-background hover:opacity-80 transition-opacity"
         />
     </Button.Root>
-    
+
     <!-- Right Caret Button -->
     <Button.Root
         class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 transition-colors backdrop-blur-md p-3 py-7 rounded-lg cursor-pointer"
-        onclick={(e) => changeIdx(e, "right")}
+        onclick={(e) => changeIdx(e, 'right')}
     >
         <CaretRight
             size={32}
@@ -137,7 +149,7 @@
     </Button.Root>
 
     <!-- SlideShow Button -->
-     <Button.Root
+    <Button.Root
         class="font-xl bg-foreground/60 text-background p-2 px-2.5 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex items-center justify-center gap-2 backdrop-blur-md absolute bottom-4 right-4"
         title="Start Slideshow"
         onclick={toggleSlideshow}

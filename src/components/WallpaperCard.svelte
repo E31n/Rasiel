@@ -59,10 +59,7 @@
                     onkeydown={closeViewer}
                 />
                 {#if isViewerOpen}
-                    <FullscreenViewer
-                        {idx}
-                        {closeViewer}
-                    />
+                    <FullscreenViewer {idx} {closeViewer} />
                 {/if}
             </div>
             <Button.Root

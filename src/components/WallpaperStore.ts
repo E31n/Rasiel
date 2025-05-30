@@ -10,12 +10,12 @@ export type Wallpaper = {
 };
 
 function shuffleArray(array: Wallpaper[]): Wallpaper[] {
-  const shuffled = [...array]; // make a copy to avoid mutating original
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // swap
-  }
-  return shuffled;
+    const shuffled = [...array]; // make a copy to avoid mutating original
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // swap
+    }
+    return shuffled;
 }
 
 const wallpapers = readable(shuffleArray(data));

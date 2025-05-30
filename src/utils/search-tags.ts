@@ -15,8 +15,8 @@ let content: string[] = [];
 
 export function createContentIndex(data: string[]) {
     contentIndex = new FlexSearch.Index({
-        encode: (text: string) => text.toLowerCase().split(""),
-        preset: "match",
+        encode: (text: string) => text.toLowerCase().split(''),
+        preset: 'match',
         resolution: 3,
         tokenize: 'forward',
     });

@@ -7,7 +7,14 @@
         createContentIndex,
         searchContentIndex,
     } from '../utils/search-tags.js';
-    import { CaretDown, Desktop, DeviceMobile, DiamondsFour, Repeat, Television } from 'phosphor-svelte';
+    import {
+        CaretDown,
+        Desktop,
+        DeviceMobile,
+        DiamondsFour,
+        Repeat,
+        Television,
+    } from 'phosphor-svelte';
 
     let searchInputRef;
 
@@ -28,27 +35,31 @@
     let dialogOpen = $state(false);
     let selectedCategory = $state('All');
 
-  function selectOption(value) {
-    selectedCategory = value;
-  }
-
-  // Optional: close dropdown when clicking outside
-  document.addEventListener("click", (e) => {
-    const trigger = document.getElementById("custom-select-trigger");
-    if (!trigger.contains(e.target)) {
-      dialogOpen = false;
+    function selectOption(value) {
+        selectedCategory = value;
     }
-  });
+
+    // Optional: close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        const trigger = document.getElementById('custom-select-trigger');
+        if (!trigger.contains(e.target)) {
+            dialogOpen = false;
+        }
+    });
 </script>
 
-<svelte:document onkeydown={(e) => {
-    if (e.key === 'f' && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        searchInputRef?.focus();
-    }
-}} />
+<svelte:document
+    onkeydown={(e) => {
+        if (e.key === 'f' && (e.metaKey || e.ctrlKey)) {
+            e.preventDefault();
+            searchInputRef?.focus();
+        }
+    }}
+/>
 
-<div class="flex sm:flex-row flex-col items-center justify-center w-full py-8 pb-5 gap-4 px-5">
+<div
+    class="flex sm:flex-row flex-col items-center justify-center w-full py-8 pb-5 gap-4 px-5"
+>
     <div
         class="bg-muted text-muted-foreground ring-offset-background hover:bg-dark-10 focus-within:ring-foreground focus-within:ring-offset-background focus-visible:outline-none relative h-14 items-center justify-between gap-4 whitespace-nowrap rounded-xl px-5 text-base font-semibold transition-all duration-200 ease-in-out focus-within:ring-2 focus-within:ring-offset-2 shadow-md hover:shadow-lg inline-flex md:w-120 sm:w-88 w-full"
     >
@@ -75,45 +86,44 @@
         </span>
     </div>
 
-
     <div class="relative w-full sm:w-52">
-      <button
-        id="custom-select-trigger"
-        type="button"
-        class="bg-muted text-muted-foreground ring-offset-background hover:bg-dark-10 focus:ring-2 focus:ring-foreground focus:ring-offset-2 focus-visible:outline-none flex h-14 w-full items-center justify-between gap-4 whitespace-nowrap rounded-xl px-4 text-base font-semibold shadow-md hover:shadow-lg transition-all duration-200 ease-in-out"
-        onclick={() => dialogOpen = !dialogOpen}
-      >
-        <span class="text-foreground flex items-center gap-3">
-            <DiamondsFour size={20} />
-            <span id="selected-option">{selectedCategory}</span>
-        </span>
-        <CaretDown class="size-5 text-foreground/80" />
-      </button>
-    
-      <!-- Dropdown -->
-       {#if dialogOpen}
-      <div
-        class="flex absolute z-10 mt-2 w-full bg-muted text-foregound/87 border border-border rounded-xl shadow-lg flex-col items-start p-1.5 overflow-hidden"
-      >
         <button
-          class="p-3 cursor-pointer flex w-full hover:bg-foreground/20 transition-colors items-center gap-3 rounded-md"
-          onclick={() => selectOption('Desktop')}
+            id="custom-select-trigger"
+            type="button"
+            class="bg-muted text-muted-foreground ring-offset-background hover:bg-dark-10 focus:ring-2 focus:ring-foreground focus:ring-offset-2 focus-visible:outline-none flex h-14 w-full items-center justify-between gap-4 whitespace-nowrap rounded-xl px-4 text-base font-semibold shadow-md hover:shadow-lg transition-all duration-200 ease-in-out"
+            onclick={() => (dialogOpen = !dialogOpen)}
         >
-          <Desktop /> Desktop
+            <span class="text-foreground flex items-center gap-3">
+                <DiamondsFour size={20} />
+                <span id="selected-option">{selectedCategory}</span>
+            </span>
+            <CaretDown class="size-5 text-foreground/80" />
         </button>
-        <button
-          class="p-3 cursor-pointer flex w-full hover:bg-foreground/30 transition-colors items-center gap-3 rounded-md"
-          onclick={() => selectOption('Mobile')}  
-        >
-          <DeviceMobile /> Mobile
-        </button>
-        <button
-          class="p-3 cursor-pointer flex w-full hover:bg-foreground/30 transition-colors items-center gap-3 rounded-md"
-          onclick={() => selectOption('All')}
-        >
-          <Repeat /> All
-        </button>
-      </div>
-      {/if}
+
+        <!-- Dropdown -->
+        {#if dialogOpen}
+            <div
+                class="flex absolute z-10 mt-2 w-full bg-muted text-foregound/87 border border-border rounded-xl shadow-lg flex-col items-start p-1.5 overflow-hidden"
+            >
+                <button
+                    class="p-3 cursor-pointer flex w-full hover:bg-foreground/20 transition-colors items-center gap-3 rounded-md"
+                    onclick={() => selectOption('Desktop')}
+                >
+                    <Desktop /> Desktop
+                </button>
+                <button
+                    class="p-3 cursor-pointer flex w-full hover:bg-foreground/30 transition-colors items-center gap-3 rounded-md"
+                    onclick={() => selectOption('Mobile')}
+                >
+                    <DeviceMobile /> Mobile
+                </button>
+                <button
+                    class="p-3 cursor-pointer flex w-full hover:bg-foreground/30 transition-colors items-center gap-3 rounded-md"
+                    onclick={() => selectOption('All')}
+                >
+                    <Repeat /> All
+                </button>
+            </div>
+        {/if}
     </div>
 </div>
