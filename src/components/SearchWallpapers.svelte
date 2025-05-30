@@ -13,14 +13,12 @@
         DeviceMobile,
         DiamondsFour,
         Repeat,
-        Television,
     } from 'phosphor-svelte';
 
     let searchInputRef;
 
     let searchState = $state('loading');
     let searchQuery = $state('');
-    let results = $state([]);
 
     onMount(async () => {
         createContentIndex($tags);
@@ -29,7 +27,18 @@
 
     $effect(() => {
         if (searchState !== 'ready') return;
-        results = searchContentIndex(searchQuery);
+        if (searchQuery.trim() === '') {
+            filteredWallpapers.set($wallpapers);
+            return;
+        }
+        let results = searchContentIndex(searchQuery);
+        results = results.reduce((acc, result) => {
+            const filtered = $wallpapers.filter((w) => w.tags.includes(result));
+            filtered.forEach((w) => acc.add(w));
+            return acc;
+        }, new Set());
+        // console.log('Search results:', results);
+        filteredWallpapers.set(Array.from(results));
     });
 
     let dialogOpen = $state(false);
@@ -67,14 +76,15 @@
             <MagnifyingGlass class="size-6 text-foreground/80" />
             <input
                 bind:this={searchInputRef}
+                bind:value={searchQuery}
                 type="text"
                 placeholder="Search Wallpapers ..."
                 class="w-full bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none font-semibold text-base"
             />
         </div>
-        <span class="flex items-center gap-[2px]">
+        <span class="flex items-center gap-[6px]">
             <kbd
-                class="bg-background-alt dark:bg-dark-10 pointer-events-none h-6 select-none items-center gap-1 rounded-md border border-border px-2 font-mono text-md font-light opacity-100 sm:flex dark:shadow-[0px_2px_0px_0px_rgba(0,0,0,0.07)]"
+                class="bg-background-alt dark:bg-dark-10 pointer-events-none h-6 select-none items-center gap-1 rounded-md border border-border px-1.5 font-mono text-md font-light opacity-100 sm:flex dark:shadow-[0px_2px_0px_0px_rgba(0,0,0,0.07)]"
             >
                 ⌘
             </kbd>
@@ -126,4 +136,11 @@
             </div>
         {/if}
     </div>
+</div>
+
+<div>
+    <!-- {#each results as result}
+        {#each  as wallpaper}
+        {/each}
+    {/each} -->
 </div>
