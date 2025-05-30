@@ -17,10 +17,9 @@
     let { idx, closeViewer } = $props();
 
     let currIdx = $state(idx);
-    let imgUrl = $derived($filteredWallpapers[currIdx].image);
-    let thumbUrl = $derived($filteredWallpapers[currIdx].thumbnail);
+    let imgUrl = $derived(import.meta.env.BASE_URL + $filteredWallpapers[currIdx].image);
+    let thumbUrl = $derived(import.meta.env.BASE_URL + $filteredWallpapers[currIdx].thumbnail);
 
-    let isLoaded = $derived(imgUrl !== undefined);
     let modalRef;
     let slideshowInterval = $state(null);
 
@@ -72,24 +71,13 @@
 <div
     use:portal={'body'}
     bind:this={modalRef}
-    class="fixed inset-0 z-50 bg-black transition-opacity bg-opacity-80 flex items-center justify-center"
+    class="fixed inset-0 z-50 bg-black border-none transition-opacity bg-opacity-80 flex items-center justify-center"
     onclick={closeViewer}
     onkeydown={handleKeydown}
     role="dialog"
     tabindex="-1"
     in:scale={{ opacity: 0, duration: 300 }}
 >
-    <!-- Loader -->
-    {#if !isLoaded}
-        <div
-            class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-80 z-10"
-        >
-            <div
-                class="loader w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"
-            ></div>
-        </div>
-    {/if}
-
     <!-- Image -->
     {#key imgUrl}
         <ImageWithPlaceholder
@@ -97,7 +85,6 @@
             alt="Fullscreen Preview"
             className="w-screen h-screen object-cover"
             style="cursor: zoom-out"
-            onload={() => (isLoaded = true)}
             placeholderSrc={thumbUrl}
         />
     {/key}
