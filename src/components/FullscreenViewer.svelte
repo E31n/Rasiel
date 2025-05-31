@@ -22,8 +22,7 @@
 
     let wallpaper: Wallpaper = $derived($filteredWallpapers[currIdx]);
 
-    const imageTypeRaw = $derived(wallpaper.image.slice(1 + wallpaper.image.lastIndexOf('.')));
-    const imageType = $derived(imageTypeRaw[0].toUpperCase() + imageTypeRaw.slice(1).toLowerCase());
+    const imageType = $derived(wallpaper.image.slice(1 + wallpaper.image.lastIndexOf('.')));
 
     const downloadWallpaper: DownloadWallpaper = $derived({
         Name: wallpaper.title,
@@ -129,7 +128,7 @@
             downloadWallpaper={downloadWallpaper}
         >
             <Button.Root
-                class="font-xl bg-foreground/60 text-background p-2 px-2.5 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex items-center justify-center gap-2 backdrop-blur-md"
+                class="font-xl bg-foreground/60 text-background p-2 px-2.5 rounded-sm hover:bg-foreground/90 focus-visible:ring-foreground focus-visible:ring-offset-background focus-visible:outline-hidden transition-all focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 backdrop-blur-md"
                 title="Download Image"
                 tabindex={0}
             >
@@ -140,7 +139,7 @@
         <!-- Close Button -->
         <Button.Root
             title="Close Viewer"
-            class="font-xl bg-foreground/60 text-background p-2 px-2.5 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex items-center justify-center gap-2 backdrop-blur-md"
+            class="font-xl bg-foreground/60 text-background p-2 px-2.5 rounded-sm hover:bg-foreground/90 focus-visible:ring-foreground focus-visible:ring-offset-background focus-visible:outline-hidden transition-all focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 backdrop-blur-md"
             onclick={closeViewer}
             tabindex={0}
         >
@@ -150,7 +149,7 @@
 
     <!-- Left Caret Button -->
     <Button.Root
-        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 transition-colors backdrop-blur-md p-3 py-7 rounded-lg cursor-pointer"
+        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 focus-visible:ring-foreground focus-visible:ring-offset-background focus-visible:outline-hidden transition-all focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] backdrop-blur-md p-3 py-7 rounded-lg cursor-pointer"
         onclick={(e: Event) => changeIdx(e, 'left')}
         tabindex={0}
     >
@@ -162,7 +161,7 @@
 
     <!-- Right Caret Button -->
     <Button.Root
-        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 transition-colors backdrop-blur-md p-3 py-7 rounded-lg cursor-pointer"
+        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 focus-visible:ring-foreground focus-visible:ring-offset-background focus-visible:outline-hidden transition-all focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] backdrop-blur-md p-3 py-7 rounded-lg cursor-pointer"
         onclick={(e: Event) => changeIdx(e, 'right')}
         tabindex={0}
     >
@@ -174,7 +173,7 @@
 
     <!-- SlideShow Button -->
     <Button.Root
-        class="font-xl bg-foreground/60 text-background p-2 px-2.5 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex items-center justify-center gap-2 backdrop-blur-md absolute bottom-4 right-4"
+        class="font-xl bg-foreground/60 text-background p-2 px-2.5 rounded-sm hover:bg-foreground/90 focus-visible:ring-foreground focus-visible:ring-offset-background focus-visible:outline-hidden transition-all focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 backdrop-blur-md absolute bottom-4 right-4"
         title="Start Slideshow"
         onclick={toggleSlideshow}
         tabindex={0}
