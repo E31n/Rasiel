@@ -10,15 +10,22 @@ if (!fs.existsSync(fullDir)) {
 }
 
 function generateJSON(filename) {
+    let stats = fs.statSync(filename);
+    stats = stats.size;
+    let identifier = 0;
+    while(stats >= 1024 && identifier <= 3) {
+        stats /= 1024;
+        identifier++;
+    }
+    const size = stats.toFixed(2) + " " + ['B', 'KB', 'MB', 'GB'][identifier];
     const name = path
         .relative(fullDir, filename)
         .replace(/[//\/]/g, '_')
         .replace(/\.(\w+)$/, '');
     const nameWithSpaces = name.replace(/[-]/g, ' ');
     const words = nameWithSpaces.split(/[_]/);
-    const title = words[0].charAt(0).toUpperCase() + words[0].slice(1);
     const tags = [...new Set(words.map((w) => w.toLowerCase()))];
-    return { title, tags };
+    return { tags, size };
 }
 
 let wallpapersRaw = [];
@@ -38,18 +45,23 @@ function readDirRecursive(dir) {
 readDirRecursive(fullDir);
 
 let wallpapers = wallpapersRaw.map((file) => {
-    const { title, tags } = generateJSON(file);
+    const { tags, size } = generateJSON(file);
+    const thumbnail =  path.join(
+        thumbDir,
+        path
+            .relative(fullDir, file)
+            .replace(/[\\\/]/g, '_')
+            .replace(/\.(\w+)$/, '-thumb.webp'),
+    );
+    const title = thumbnail
+        .slice(thumbnail.lastIndexOf('/') + 1)
+        .slice(0, -11) + file.slice(file.lastIndexOf('.'))
     return {
         title,
         tags,
+        size,
         image: path.relative('public', file),
-        thumbnail: path.join(
-            thumbDir,
-            path
-                .relative(fullDir, file)
-                .replace(/[\\\/]/g, '_')
-                .replace(/\.(\w+)$/, '-thumb.webp'),
-        ),
+        thumbnail: thumbnail,
     };
 });
 
