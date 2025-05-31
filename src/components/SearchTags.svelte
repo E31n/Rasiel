@@ -2,7 +2,7 @@
     import MagnifyingGlass from 'phosphor-svelte/lib/MagnifyingGlass';
     import { onMount } from 'svelte';
     import { Button, Command, Dialog } from 'bits-ui';
-    import { tags } from './WallpaperStore.js';
+    import { tags } from '../store/WallpaperStore.js';
     import {
         // type SearchContent,
         createContentIndex,

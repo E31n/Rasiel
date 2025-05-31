@@ -2,15 +2,15 @@
     let tag = $props<string | null>();
 
     import WallpaperCard from './WallpaperCard.svelte';
-    import SkeletonCard from './SkeletonCard.svelte'; // 🔧 You’ll create this
+    import SkeletonCard from './commons/SkeletonCard.svelte'; // 🔧 You’ll create this
     import { Pagination } from 'bits-ui';
     import CaretLeft from 'phosphor-svelte/lib/CaretLeft';
     import CaretRight from 'phosphor-svelte/lib/CaretRight';
     import {
         wallpapers as wallpaperData,
         filteredWallpapers,
-    } from '../components/WallpaperStore';
-    import type { Wallpaper } from '../components/WallpaperStore';
+    } from '../store/WallpaperStore';
+    import type { Wallpaper } from '../store/WallpaperStore';
 
     let currentPage = $state(1);
     const perPage = 9;

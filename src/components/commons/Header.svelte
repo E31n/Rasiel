@@ -1,10 +1,10 @@
 <script lang="ts">
     import { Button } from 'bits-ui';
-    import Search from './SearchTags.svelte';
-    import { Logo } from './icons/index.js';
+    import Search from '../SearchTags.svelte';
+    import { Logo } from '../../icons/index.js';
     import LightSwitch from './LightSwitch.svelte';
-    import { siteConfig } from '../config/index.js';
-    import Github from './icons/github.svelte';
+    import { siteConfig } from '../../config/index.js';
+    import Github from '../../icons/github.svelte';
 </script>
 
 <header

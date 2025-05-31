@@ -6,7 +6,7 @@
         filteredWallpapers,
         wallpapers,
         type Wallpaper,
-    } from './WallpaperStore.js';
+    } from '../store/WallpaperStore.js';
     import {
         createContentIndex,
         searchContentIndex,

@@ -1,11 +1,11 @@
 <script lang="ts">
     import { scale } from 'svelte/transition';
     import { AspectRatio, Button } from 'bits-ui';
-    import SkeletonCard from './SkeletonCard.svelte';
+    import SkeletonCard from './commons/SkeletonCard.svelte';
     import { CornersOut, Download } from 'phosphor-svelte';
     import FullscreenViewer from './FullscreenViewer.svelte';
     import DownloadButton from './DownloadButton.svelte';
-    import type { Wallpaper, DownloadWallpaper } from './WallpaperStore';
+    import type { Wallpaper, DownloadWallpaper } from '../store/WallpaperStore';
 
     export let wallpaper: Wallpaper;
     export let idx: number;

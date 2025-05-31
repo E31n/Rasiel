@@ -1,8 +1,15 @@
+<script lang="ts">
+    import type { SVGAttributes } from 'svelte/elements';
+
+    let restProps: SVGAttributes<SVGElement> = $props();
+</script>
+
 <svg
     height="22"
     width="94"
     viewBox="0 0 821.85 228.902"
     xmlns="http://www.w3.org/2000/svg"
+    {...restProps}
 >   
     <title>Raziel Logo</title>
     <g

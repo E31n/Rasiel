@@ -1,7 +1,7 @@
 	
 <script lang="ts">
 	import { AlertDialog, Button, type WithoutChild } from "bits-ui";
-    import type { DownloadWallpaper } from "./WallpaperStore";
+    import type { DownloadWallpaper } from "../store/WallpaperStore";
 
 	type Props = AlertDialog.RootProps & {
 		contentProps?: WithoutChild<AlertDialog.ContentProps>;

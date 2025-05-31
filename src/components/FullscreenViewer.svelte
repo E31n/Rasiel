@@ -11,9 +11,9 @@
     import { portal } from 'svelte-portal';
     import { scale } from 'svelte/transition';
     import { onMount } from 'svelte';
-    import { filteredWallpapers } from './WallpaperStore';
-    import type { Wallpaper, DownloadWallpaper } from './WallpaperStore';
-    import ImageWithPlaceholder from './ImageWithPlaceholder.svelte';
+    import { filteredWallpapers } from '../store/WallpaperStore';
+    import type { Wallpaper, DownloadWallpaper } from '../store/WallpaperStore';
+    import ImageWithPlaceholder from './commons/ImageWithPlaceholder.svelte';
     import DownloadButton from './DownloadButton.svelte';
 
     let { idx, closeViewer } = $props();
