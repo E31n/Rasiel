@@ -16,8 +16,10 @@ export default defineConfig({
             allowedHosts: ['.ngrok-free.app'], // ✅ allow any ngrok tunnel
         }
     },
-    site: 'https://e31n.github.io',
-    base: '/Rasiel/',
+    // site: 'https://e31n.github.io',
+    site: 'https://rasiel.thunderblaze.tech',
+    // base: '/Rasiel/',
+    base: '/',
     trailingSlash: 'never',
     output: 'static',
 });
