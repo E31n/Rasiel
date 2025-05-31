@@ -1,7 +1,6 @@
 ---
 // src/pages/tags/[tag].astro
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.svelte';
 import WallpaperComponent from '../components/WallpaperComponent.svelte';
 import tags from '../data/tags.json';
 
@@ -20,7 +19,6 @@ const { tag } = Astro.params;
 </head>
 
 <BaseLayout>
-    <Header client:only />
     <h1 class='text-5xl font-bold p-5 pt-8 text-center'>
         {tag[0].toUpperCase() + tag.slice(1)} Wallpapers
     </h1>

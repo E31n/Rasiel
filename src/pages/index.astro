@@ -1,12 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.svelte';
 import WallpaperComponent from '../components/WallpaperComponent.svelte';
 import SearchWallpapers from '../components/SearchWallpapers.svelte';
 ---
 
 <BaseLayout>
-    <Header client:only />
     <SearchWallpapers client:only />
     <WallpaperComponent client:only />
 </BaseLayout>
