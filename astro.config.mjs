@@ -9,7 +9,12 @@ export default defineConfig({
         svelte(),
     ],
     vite: {
-        plugins: [tailwindcss()],
+        plugins: [
+            tailwindcss()
+        ],
+        server: {
+            allowedHosts: ['.ngrok-free.app'], // ✅ allow any ngrok tunnel
+        }
     },
     site: 'https://e31n.github.io',
     base: '/Rasiel/',
