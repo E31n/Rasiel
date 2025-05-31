@@ -21,10 +21,10 @@
 </script>
  
 <AlertDialog.Root bind:open {...restProps}>
-	<AlertDialog.Trigger class={className} onclick={(e) => e.stopPropagation()}>
+	<AlertDialog.Trigger class={className} onclick={(e) => e.stopPropagation()} tabindex={-1}>
 		{@render children?.()}
 	</AlertDialog.Trigger>
-	<AlertDialog.Portal>
+	<!-- <AlertDialog.Portal> -->
 		<AlertDialog.Overlay 
             class="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/80"
         />
@@ -51,17 +51,18 @@
                 </AlertDialog.Cancel>
                 <AlertDialog.Action
                     class="flex w-full"
+                    tabindex={-1}
                 >
-                <Button.Root
-                    href={downloadWallpaper.Link}
-                    download={downloadWallpaper.Name}
-                    class="h-input rounded-input bg-dark text-background shadow-mini hover:bg-dark/95 focus-visible:ring-dark focus-visible:ring-offset-background focus-visible:outline-hidden inline-flex w-full items-center justify-center text-[15px] font-semibold transition-all focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98]"
+                    <Button.Root
+                        href={downloadWallpaper.Link}
+                        download={downloadWallpaper.Name}
+                        class="h-input rounded-input bg-dark text-background shadow-mini hover:bg-dark/95 focus-visible:ring-dark focus-visible:ring-offset-background focus-visible:outline-hidden inline-flex w-full items-center justify-center text-[15px] font-semibold transition-all focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98]"
                     >
                         Download
                     </Button.Root>
                 </AlertDialog.Action>
             </div>
 		</AlertDialog.Content>
-	</AlertDialog.Portal>
+	<!-- </AlertDialog.Portal> -->
 </AlertDialog.Root>
 

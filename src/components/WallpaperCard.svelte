@@ -1,6 +1,5 @@
 <script lang="ts">
     import { scale } from 'svelte/transition';
-    import { onMount } from 'svelte';
     import { AspectRatio, Button } from 'bits-ui';
     import SkeletonCard from './SkeletonCard.svelte';
     import { CornersOut, Download } from 'phosphor-svelte';
@@ -33,16 +32,15 @@
         e.stopPropagation();
         isViewerOpen = false;
     };
-
-    onMount(() => {
-        // Simulate loading delay
-        // setTimeout(() => {
-            isLoading = false;
-        // }, 50);
-    });
 </script>
 
 {#if isLoading}
+    <img
+        class="hidden"
+        src={downloadWallpaper.Thumbnail}
+        alt={wallpaper.title}
+        onload={() => isLoading = false}
+    />
     <SkeletonCard />
 {:else}
     <div
