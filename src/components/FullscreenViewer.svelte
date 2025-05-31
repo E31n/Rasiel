@@ -26,8 +26,8 @@
 
     const downloadWallpaper: DownloadWallpaper = $derived({
         Name: wallpaper.title,
-        Link: `${import.meta.env.BASE_URL}/${wallpaper.image}`,
-        Thumbnail: `${import.meta.env.BASE_URL}/${wallpaper.thumbnail}`,
+        Link: `${import.meta.env.BASE_URL}${wallpaper.image}`,
+        Thumbnail: `${import.meta.env.BASE_URL}${wallpaper.thumbnail}`,
         Size: wallpaper.size,
         Type: imageType,
     });

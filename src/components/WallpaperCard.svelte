@@ -18,8 +18,8 @@
 
     const downloadWallpaper: DownloadWallpaper = {
         Name: wallpaper.title,
-        Link: `${import.meta.env.BASE_URL}/${wallpaper.image}`,
-        Thumbnail: `${import.meta.env.BASE_URL}/${wallpaper.thumbnail}`,
+        Link: `${import.meta.env.BASE_URL}${wallpaper.image}`,
+        Thumbnail: `${import.meta.env.BASE_URL}${wallpaper.thumbnail}`,
         Size: wallpaper.size,
         Type: imageType,
     };
@@ -88,7 +88,7 @@
                 {#each wallpaper.tags as tag}
                     <Button.Root
                         class="text-xs font-normal bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-100 px-2 py-0.5 pb-1 rounded-sm hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors cursor-pointer"
-                        href={`${import.meta.env.BASE_URL}/${tag}`}
+                        href={`${import.meta.env.BASE_URL}${tag}`}
                     >
                         {tag}
                     </Button.Root>

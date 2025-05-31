@@ -117,7 +117,7 @@
 
                             {#each results as result}
                                 <Command.LinkItem
-                                    href={`${import.meta.env.BASE_URL}/${result}`}
+                                    href={`${import.meta.env.BASE_URL}${result}`}
                                     class="rounded-button data-selected:bg-muted outline-hidden flex h-10 cursor-pointer select-none items-center gap-2 px-3 py-2.5 text-sm capitalize"
                                     onSelect={() => {
                                         searchQuery = '';
