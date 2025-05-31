@@ -1,50 +1,128 @@
-# Astro Starter Kit: Minimal
+<div align="center">
+<h1> 🌌 Rasiel </h1>
 
-```sh
-bun create astro@latest -- --template minimal
-```
+[![Stars](https://img.shields.io/github/stars/E31n/Rasiel?style=for-the-badge&color=8a2be2)](https://github.com/E31n/Rasiel/stargazers)
+[![Forks](https://img.shields.io/github/forks/E31n/Rasiel?style=for-the-badge&color=9370db)](https://github.com/E31n/Rasiel/network)
+[![Issues](https://img.shields.io/github/issues/E31n/Rasiel?style=for-the-badge&color=ba55d3)](https://github.com/E31n/Rasiel/issues)
+[![License](https://img.shields.io/github/license/E31n/Rasiel?style=for-the-badge&color=d8bfd8)](https://github.com/E31n/Rasiel/blob/main/LICENSE)
+[![Astro](https://img.shields.io/badge/Powered%20by-Astro-blueviolet?style=for-the-badge&logo=astro)](https://astro.build)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+**Rasiel** is a sleek and modern static wallpaper website built with [Svelte](https://svelte.dev/) and [Astro](https://astro.build/). It offers an intuitive interface for browsing, viewing, and downloading high-quality wallpapers. With features like slideshow viewing and bulk downloading based on tags, Rasiel provides a seamless experience for wallpaper enthusiasts.
+</div>
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## ✨ Features
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Responsive Wallpaper Viewer**: Browse and view wallpapers with a clean and responsive design.
+- **Slideshow Mode**: Enjoy your favorite wallpapers in a continuous slideshow.
+- **Download Options**:
+  - Single-click download for individual wallpapers.
+  - Bulk download wallpapers based on selected tags.
+- **Tag-Based Filtering**: Easily filter wallpapers by categories or themes using tags.
+- **Static Site Generation**: Built with Astro for fast and efficient static site generation.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+---
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page
-is exposed as a route based on its file name.
+## 🚀 Getting Started
 
-There's nothing special about `src/components/`, but that's where we like to put
-any Astro/React/Vue/Svelte/Preact components.
+### Prerequisites
 
-Any static assets, like images, can be placed in the `public/` directory.
+- [Node.js](https://nodejs.org/) (version 14 or above)
+- [npm](https://www.npmjs.com/) or [bun](https://bun.sh/)
 
-## 🧞 Commands
+### Installation
 
-All commands are run from the root of the project, from a terminal:
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/E31n/Rasiel.git
+   cd Rasiel
+   ```
 
-| Command               | Action                                           |
-| :-------------------- | :----------------------------------------------- |
-| `bun install`         | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+2. **Install dependencies**:
+   ```bash
+   npm install
+   # or
+   bun install
+   ```
 
-## 👀 Want to learn more?
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   # or
+   bun run dev
+   ```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into
-our [Discord server](https://astro.build/chat).
+4. **Build for production**:
+   ```bash
+   npm run build
+   # or
+   bun run build
+   ```
+
+5. **Preview the production build**:
+   ```bash
+   npm run preview
+   # or
+   bun run preview
+   ```
+
+---
+
+## 🖼️ Adding Wallpapers
+
+To add new wallpapers:
+
+1. Rename your image as Topic_Desc_Tags_Category.ext
+2. Where Tags should be seperated by _ and spaces should be replaced with - and ext can be any supported image format like webp, jpg, png, etc.
+4. Place your image files in the `public/wallpapers/` or specific inner directory.
+
+---
+
+## 🏷️ Tagging System
+
+Rasiel uses a tag-based system to categorize wallpapers.
+
+- Tags help in filtering wallpapers based on themes, colors, or other attributes.
+- Ensure that each wallpaper has appropriate tags for better organization and searchability.
+
+---
+
+## 📦 Bulk Downloading
+
+Users can download multiple wallpapers at once based on selected tags:
+(Yet to be implemented)
+
+1. Navigate to the tag or category page.
+2. Click on the "Download All" button to download a ZIP file containing all wallpapers under that tag.
+
+---
+
+## 🧪 Technologies Used
+
+- [Svelte](https://svelte.dev/) - Frontend framework for building user interfaces.
+- [Astro](https://astro.build/) - Static site generator for fast and optimized websites.
+- [TypeScript](https://www.typescriptlang.org/) - Typed superset of JavaScript.
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework for styling.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! If you'd like to contribute:
+
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature/your-feature-name`.
+3. Make your changes and commit them: `git commit -m 'Add your message here'`.
+4. Push to the branch: `git push origin feature/your-feature-name`.
+5. Open a pull request.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+For any issues or suggestions, please open an [issue](https://github.com/E31n/Rasiel/issues) on GitHub.
