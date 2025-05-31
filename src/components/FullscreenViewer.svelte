@@ -57,6 +57,26 @@
             changeIdx(e, 'right');
         } else if (e.key === ' ') {
             toggleSlideshow(e);
+        } else if (e.key === 'Tab') {
+            const focusableElements = modalRef?.querySelectorAll(
+                '[tabindex]:not([tabindex="-1"])'
+            );
+            const first = focusableElements?.[0];
+            const last = focusableElements?.[focusableElements.length - 1];
+
+            if (e.shiftKey) {
+                // If Shift + Tab is pressed, focus the last element
+                if (document.activeElement === first) {
+                    e.preventDefault();
+                    (last as HTMLElement)?.focus();
+                }
+            } else {
+                // If Tab is pressed, focus the first element
+                if (document.activeElement === last) {
+                    e.preventDefault();
+                    (first as HTMLElement)?.focus();
+                }
+            }
         }
     };
 
@@ -111,6 +131,7 @@
             <Button.Root
                 class="font-xl bg-foreground/60 text-background p-2 px-2.5 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex items-center justify-center gap-2 backdrop-blur-md"
                 title="Download Image"
+                tabindex={0}
             >
                 <Download size={18} /> Download
             </Button.Root>
@@ -121,6 +142,7 @@
             title="Close Viewer"
             class="font-xl bg-foreground/60 text-background p-2 px-2.5 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex items-center justify-center gap-2 backdrop-blur-md"
             onclick={closeViewer}
+            tabindex={0}
         >
             <X size={20} />
         </Button.Root>
@@ -130,6 +152,7 @@
     <Button.Root
         class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 transition-colors backdrop-blur-md p-3 py-7 rounded-lg cursor-pointer"
         onclick={(e: Event) => changeIdx(e, 'left')}
+        tabindex={0}
     >
         <CaretLeft
             size={32}
@@ -141,6 +164,7 @@
     <Button.Root
         class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-foreground/60 hover:bg-foreground/90 transition-colors backdrop-blur-md p-3 py-7 rounded-lg cursor-pointer"
         onclick={(e: Event) => changeIdx(e, 'right')}
+        tabindex={0}
     >
         <CaretRight
             size={32}
@@ -153,6 +177,7 @@
         class="font-xl bg-foreground/60 text-background p-2 px-2.5 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex items-center justify-center gap-2 backdrop-blur-md absolute bottom-4 right-4"
         title="Start Slideshow"
         onclick={toggleSlideshow}
+        tabindex={0}
     >
         {#if slideshowInterval}
             <Pause size={20} />
