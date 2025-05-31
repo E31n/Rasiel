@@ -2,11 +2,11 @@ import { defineSiteConfig } from '../utils/use-site-config.svelte.js';
 
 export const siteConfig = defineSiteConfig({
     name: 'Raziel',
-    url: 'https://www.bits-ui.com',
+    url: 'https://e31n.github.io/Rasiel/',
     description:
-        'Headless components for Svelte - flexible, unstyled, and accessible primitives that provide the foundation for building your own high-quality component library.',
+        'A High-quality Wallpaper library that allows Previewing and Bulk Downloading with a focus on user experience and accessibility.',
     ogImage: {
-        url: 'https://www.bits-ui.com/og.png',
+        url: 'https://e31n.github.io/Rasiel/og.png',
         height: '630',
         width: '1200',
     },
@@ -16,16 +16,18 @@ export const siteConfig = defineSiteConfig({
         url: 'https://github.com/huntabyte/bits-ui/blob/main/LICENSE',
     },
     links: {
-        x: 'https://x.com/huntabyte',
         github: 'https://github.com/E31n/Rasiel',
     },
     keywords: [
-        'Svelte',
-        'SvelteKit',
-        'Svelte Components',
-        'Headless Svelte',
-        'Components',
-        'Headless UI Svelte',
+        'raziel',
+        'e31n',
+        'wallpaper',
+        'high-quality',
+        'library',
+        'user experience',
+        'accessibility',
+        'open source',
+        'free',
     ],
 });
 
