@@ -3,7 +3,6 @@
     import Search from './SearchTags.svelte';
     import { Logo } from './icons/index.js';
     import LightSwitch from './LightSwitch.svelte';
-    //	import MobileNav from "./navigation/mobile-nav.svelte";
     import { siteConfig } from '../config/index.js';
     import Github from './icons/github.svelte';
 </script>
