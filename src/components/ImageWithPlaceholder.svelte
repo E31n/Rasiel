@@ -6,7 +6,7 @@
     export let alt = '';
     export let className = '';
     export let style = '';
-    export let onLoad: (() => void) | undefined;
+    export let onLoad: (() => void) | undefined = undefined;
 
     let imgSrc = placeholderSrc ?? src;
 

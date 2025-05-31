@@ -49,10 +49,7 @@
     {:else}
         {#each pagedWallpapers as wallpaper, i (wallpaper.thumbnail)}
             <WallpaperCard
-                title={wallpaper.title}
-                image={wallpaper.image}
-                thumbnail={wallpaper.thumbnail}
-                tags={wallpaper.tags}
+                wallpaper={wallpaper}
                 idx={i + (currentPage - 1) * perPage}
             />
         {/each}

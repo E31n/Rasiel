@@ -5,29 +5,40 @@
     import SkeletonCard from './SkeletonCard.svelte';
     import { CornersOut, Download } from 'phosphor-svelte';
     import FullscreenViewer from './FullscreenViewer.svelte';
+    import DownloadButton from './DownloadButton.svelte';
+    import type { Wallpaper, DownloadWallpaper } from './WallpaperStore';
 
-    export let title: string;
-    export let image: string;
-    export let thumbnail: string;
-    export let tags: string[] = [];
+    export let wallpaper: Wallpaper;
     export let idx: number;
 
     let isViewerOpen = false;
     let isLoading = true;
 
+    let imageType = wallpaper.image.slice(1 + wallpaper.image.lastIndexOf('.'));
+    imageType = imageType[0].toUpperCase() + imageType.slice(1).toLowerCase();
+
+    const downloadWallpaper: DownloadWallpaper = {
+        Name: wallpaper.title,
+        Link: `${import.meta.env.BASE_URL}/${wallpaper.image}`,
+        Thumbnail: `${import.meta.env.BASE_URL}/${wallpaper.thumbnail}`,
+        Size: wallpaper.size,
+        Type: imageType,
+    };
+
     const openViewer = () => {
         isViewerOpen = true;
     };
 
-    const closeViewer = () => {
+    const closeViewer = (e: Event) => {
+        e.stopPropagation();
         isViewerOpen = false;
     };
 
     onMount(() => {
         // Simulate loading delay
-        setTimeout(() => {
+        // setTimeout(() => {
             isLoading = false;
-        }, 50);
+        // }, 50);
     });
 </script>
 
@@ -44,9 +55,9 @@
             class="rounded-md w-full bg-transparent group relative overflow-hidden"
         >
             <img
-                src={`${import.meta.env.BASE_URL}/${thumbnail}`}
+                src={downloadWallpaper.Thumbnail}
                 class="h-full w-full rounded-md object-cover group-hover:scale-110 transition-transform"
-                alt={title}
+                alt={wallpaper.title}
                 loading="eager"
             />
             <div
@@ -62,20 +73,21 @@
                     <FullscreenViewer {idx} {closeViewer} />
                 {/if}
             </div>
-            <Button.Root
-                class="font-xl bg-foreground/60 text-background p-2 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex absolute bottom-2 right-2 backdrop-blur-md"
-                href={`${import.meta.env.BASE_URL}/${image}`}
-                download={thumbnail
-                    .slice(thumbnail.lastIndexOf('/') + 1)
-                    .slice(0, -11) + image.slice(image.lastIndexOf('.'))}
+            <DownloadButton 
+                downloadWallpaper={downloadWallpaper}
+                className="absolute bottom-2 right-2"
+            >
+                <Button.Root
+                class="font-xl bg-foreground/60 text-background p-2 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex  backdrop-blur-md"
             >
                 <Download />
             </Button.Root>
+            </DownloadButton>
         </AspectRatio.Root>
         <div class="p-0.5 pt-1">
             <!-- <h3 class="font-bold text-lg text-foreground">{title}</h3> -->
             <div class="mt-2 flex flex-wrap gap-2">
-                {#each tags as tag}
+                {#each wallpaper.tags as tag}
                     <Button.Root
                         class="text-xs font-medium bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-100 px-2 py-0.5 pb-1 rounded-sm hover:bg-zinc-300 dark:hover:bg-zinc-600 transition-colors cursor-pointer"
                         href={`${import.meta.env.BASE_URL}/${tag}`}

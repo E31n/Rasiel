@@ -6,7 +6,16 @@ export type Wallpaper = {
     title: string;
     image: string;
     thumbnail: string;
+    size: string;
     tags: string[];
+};
+
+export type DownloadWallpaper = {
+    Name: string;
+    Size: string;
+    Type: string;
+    Link: string;
+    Thumbnail: string;
 };
 
 function shuffleArray(array: Wallpaper[]): Wallpaper[] {
