@@ -41,13 +41,13 @@
         >
             <div class="flex flex-col gap-4 pb-2">
 
-                <AlertDialog.Title class="text-xl text-center font-bold">
+                <AlertDialog.Title class="text-xl text-center font-black">
                     Download The Image ?
                 </AlertDialog.Title>
-                <AlertDialog.Description class="flex flex-col text-foreground/80 text-sm gap-0.5 items-center">
-                    <span>Name: {downloadWallpaper.Name}</span>
-                    <span>Size: {downloadWallpaper.Size}</span>
-                    <span>Type: {downloadWallpaper.Type}</span>
+                <AlertDialog.Description class="flex flex-col text-foreground/80 text-sm gap-0.5">
+                    <span class="overflow-wrap"><b class="font-black italic">Name:</b> {downloadWallpaper.Name}</span>
+                    <span class="overflow-wrap"><b class="font-black italic">Size:</b> {downloadWallpaper.Size}</span>
+                    <span class="overflow-wrap"><b class="font-black italic">Type:</b> {downloadWallpaper.Type}</span>
                 </AlertDialog.Description>
             </div>
             <div class="flex w-full items-center justify-center gap-2">

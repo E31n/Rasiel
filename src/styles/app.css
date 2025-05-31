@@ -4,6 +4,7 @@
 @plugin "@nobie-org/tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant hover (&:hover);
 
 :root {
     /* Colors */
