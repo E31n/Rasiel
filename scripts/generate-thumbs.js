@@ -36,6 +36,7 @@ const files = getAllFiles(inputDir);
 files.forEach((file) => {
     const relativePath = path.relative(inputDir, file);
     const outputName = relativePath
+    	.replace(/[\r\n\t]+/g, '')
         .replace(/[\/\\]/g, '_')
         .replace(/\.(\w+)$/, '-thumb.webp');
     const outputPath = path.join(outputDir, outputName);
