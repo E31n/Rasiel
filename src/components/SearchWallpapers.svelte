@@ -32,6 +32,7 @@
 
     $effect(() => {
         if (searchState !== 'ready') return;
+        if (debounceTimeout) clearTimeout(debounceTimeout);
 
         if (searchQuery.trim() === '') {
             filteredWallpapers.set(
@@ -43,8 +44,6 @@
             );
             return;
         }
-
-        if (debounceTimeout) clearTimeout(debounceTimeout);
 
         debounceTimeout = setTimeout(() => {
             const results = searchContentIndex(searchQuery);

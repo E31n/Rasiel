@@ -6,12 +6,16 @@
     import FullscreenViewer from './FullscreenViewer.svelte';
     import DownloadButton from './DownloadButton.svelte';
     import type { Wallpaper, DownloadWallpaper } from '../store/WallpaperStore';
+    import BulkCheckbox from './BulkCheckbox.svelte';
 
     export let wallpaper: Wallpaper;
     export let idx: number;
+    export let selectWallpaper: (index: number) => void;
+    export let isWallpaperSelected: (index: number) => boolean;
 
     let isViewerOpen = false;
     let isLoading = true;
+    let isWallSelected = isWallpaperSelected(idx);
 
     let imageType = wallpaper.image.slice(1 + wallpaper.image.lastIndexOf('.'));
     imageType = imageType[0].toUpperCase() + imageType.slice(1).toLowerCase();
@@ -81,6 +85,10 @@
                 <Download />
             </Button.Root>
             </DownloadButton>
+            <BulkCheckbox 
+                onclick={() => {selectWallpaper(idx)}}
+                bind:checked={isWallSelected}
+            />
         </AspectRatio.Root>
         <div class="p-0.5 pt-1">
             <!-- <h3 class="font-bold text-lg text-foreground">{title}</h3> -->

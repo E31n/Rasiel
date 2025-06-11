@@ -3,7 +3,7 @@
 
     import WallpaperCard from './WallpaperCard.svelte';
     import SkeletonCard from './commons/SkeletonCard.svelte'; // 🔧 You’ll create this
-    import { Pagination } from 'bits-ui';
+    import { Button, Pagination } from 'bits-ui';
     import CaretLeft from 'phosphor-svelte/lib/CaretLeft';
     import CaretRight from 'phosphor-svelte/lib/CaretRight';
     import {
@@ -11,6 +11,7 @@
         filteredWallpapers,
     } from '../store/WallpaperStore';
     import type { Wallpaper } from '../store/WallpaperStore';
+    import DownloadWallpaper from './DownloadWallpaper.svelte';
 
     let currentPage = $state(1);
     const perPage = 9;
@@ -37,6 +38,26 @@
     $effect(() => {
         loadWallpapers(currentPage);
     });
+
+    let selectedWallpapers: number[] = $state([]);
+
+    const selectWallpaper = (index: number) => {
+        if (selectedWallpapers.includes(index)) {
+            selectedWallpapers = selectedWallpapers.filter(
+                (i) => i !== index,
+            );
+        } else {
+            selectedWallpapers = [...selectedWallpapers, index];
+        }
+    };
+
+    $effect(() => {
+        $inspect('Selected wallpapers:', selectedWallpapers);
+    });
+
+    const isWallpaperSelected = (index: number) => {
+        return selectedWallpapers.includes(index);
+    };
 </script>
 
 <main
@@ -51,6 +72,8 @@
             <WallpaperCard
                 wallpaper={wallpaper}
                 idx={i + (currentPage - 1) * perPage}
+                selectWallpaper={selectWallpaper}
+                isWallpaperSelected={isWallpaperSelected}
             />
         {/each}
     {/if}
@@ -103,3 +126,5 @@
         </p>
     {/snippet}
 </Pagination.Root>
+
+<DownloadWallpaper {selectedWallpapers}/>
