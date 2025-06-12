@@ -3,7 +3,7 @@
 
     import WallpaperCard from './WallpaperCard.svelte';
     import SkeletonCard from './commons/SkeletonCard.svelte'; // 🔧 You’ll create this
-    import { Button, Pagination } from 'bits-ui';
+    import { Pagination } from 'bits-ui';
     import CaretLeft from 'phosphor-svelte/lib/CaretLeft';
     import CaretRight from 'phosphor-svelte/lib/CaretRight';
     import {
@@ -39,15 +39,13 @@
         loadWallpapers(currentPage);
     });
 
-    let selectedWallpapers: number[] = $state([]);
+    let selectedWallpapers: string[] = $state([]);
 
-    const selectWallpaper = (index: number) => {
-        if (selectedWallpapers.includes(index)) {
-            selectedWallpapers = selectedWallpapers.filter(
-                (i) => i !== index,
-            );
+    const selectWallpaper = (wall: string) => {
+        if (selectedWallpapers.includes(wall)) {
+            selectedWallpapers = selectedWallpapers.filter((i) => i !== wall);
         } else {
-            selectedWallpapers = [...selectedWallpapers, index];
+            selectedWallpapers = [...selectedWallpapers, wall];
         }
     };
 
@@ -55,8 +53,8 @@
         $inspect('Selected wallpapers:', selectedWallpapers);
     });
 
-    const isWallpaperSelected = (index: number) => {
-        return selectedWallpapers.includes(index);
+    const isWallpaperSelected = (wall: string) => {
+        return selectedWallpapers.includes(wall);
     };
 </script>
 
@@ -70,10 +68,10 @@
     {:else}
         {#each pagedWallpapers as wallpaper, i (wallpaper.thumbnail)}
             <WallpaperCard
-                wallpaper={wallpaper}
+                {wallpaper}
                 idx={i + (currentPage - 1) * perPage}
-                selectWallpaper={selectWallpaper}
-                isWallpaperSelected={isWallpaperSelected}
+                {selectWallpaper}
+                {isWallpaperSelected}
             />
         {/each}
     {/if}
@@ -127,4 +125,4 @@
     {/snippet}
 </Pagination.Root>
 
-<DownloadWallpaper {selectedWallpapers}/>
+<DownloadWallpaper {selectedWallpapers} />

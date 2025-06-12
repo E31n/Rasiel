@@ -22,7 +22,9 @@
 
     let wallpaper: Wallpaper = $derived($filteredWallpapers[currIdx]);
 
-    const imageType = $derived(wallpaper.image.slice(1 + wallpaper.image.lastIndexOf('.')));
+    const imageType = $derived(
+        wallpaper.image.slice(1 + wallpaper.image.lastIndexOf('.')),
+    );
 
     const downloadWallpaper: DownloadWallpaper = $derived({
         Name: wallpaper.title,
@@ -58,7 +60,7 @@
             toggleSlideshow(e);
         } else if (e.key === 'Tab') {
             const focusableElements = modalRef?.querySelectorAll(
-                '[tabindex]:not([tabindex="-1"])'
+                '[tabindex]:not([tabindex="-1"])',
             );
             const first = focusableElements?.[0];
             const last = focusableElements?.[focusableElements.length - 1];
@@ -124,9 +126,7 @@
     <!-- Buttons -->
     <div class="absolute top-4 right-4 flex gap-3">
         <!-- Download Button -->
-        <DownloadButton
-            downloadWallpaper={downloadWallpaper}
-        >
+        <DownloadButton {downloadWallpaper}>
             <Button.Root
                 class="font-xl bg-foreground/60 text-background p-2 px-2.5 rounded-sm hover:bg-foreground/90 focus-visible:ring-foreground focus-visible:ring-offset-background focus-visible:outline-hidden transition-all focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 backdrop-blur-md"
                 title="Download Image"

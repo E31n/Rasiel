@@ -10,12 +10,12 @@
 
     export let wallpaper: Wallpaper;
     export let idx: number;
-    export let selectWallpaper: (index: number) => void;
-    export let isWallpaperSelected: (index: number) => boolean;
+    export let selectWallpaper: (wall: string) => void;
+    export let isWallpaperSelected: (wall: string) => boolean;
 
     let isViewerOpen = false;
     let isLoading = true;
-    let isWallSelected = isWallpaperSelected(idx);
+    let isWallSelected = isWallpaperSelected(wallpaper.image);
 
     let imageType = wallpaper.image.slice(1 + wallpaper.image.lastIndexOf('.'));
     imageType = imageType[0].toUpperCase() + imageType.slice(1).toLowerCase();
@@ -43,7 +43,7 @@
         class="hidden"
         src={downloadWallpaper.Thumbnail}
         alt={wallpaper.title}
-        onload={() => isLoading = false}
+        onload={() => (isLoading = false)}
     />
     <SkeletonCard />
 {:else}
@@ -75,18 +75,20 @@
                     <FullscreenViewer {idx} {closeViewer} />
                 {/if}
             </div>
-            <DownloadButton 
-                downloadWallpaper={downloadWallpaper}
+            <DownloadButton
+                {downloadWallpaper}
                 className="absolute bottom-2 right-2"
             >
                 <Button.Root
-                class="font-xl bg-foreground/60 text-background p-2 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex  backdrop-blur-md"
-            >
-                <Download />
-            </Button.Root>
+                    class="font-xl bg-foreground/60 text-background p-2 rounded-sm hover:bg-foreground/90 transition-colors cursor-pointer flex  backdrop-blur-md"
+                >
+                    <Download />
+                </Button.Root>
             </DownloadButton>
-            <BulkCheckbox 
-                onclick={() => {selectWallpaper(idx)}}
+            <BulkCheckbox
+                onclick={() => {
+                    selectWallpaper(wallpaper.image);
+                }}
                 bind:checked={isWallSelected}
             />
         </AspectRatio.Root>

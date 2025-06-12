@@ -11,7 +11,7 @@
     import { get } from 'svelte/store';
     const scrollTop = writable(0);
     scrollTop.set(0);
-    scrollTop.subscribe(value => $scrollTop = value);
+    scrollTop.subscribe((value) => ($scrollTop = value));
 
     // Store measured heights and offsets
     let itemHeights: number[] = [];
@@ -80,10 +80,9 @@
     });
 
     $: totalHeight = itemOffsets.length
-        ? itemOffsets[itemOffsets.length - 1] + itemHeights[itemHeights.length - 1]
+        ? itemOffsets[itemOffsets.length - 1] +
+          itemHeights[itemHeights.length - 1]
         : 0;
-
-        
 </script>
 
 <div
@@ -94,7 +93,7 @@
     <div style="height: {totalHeight}px; position: relative;">
         {#each items.slice(visibleStart, visibleEnd) as item, i (visibleStart + i)}
             <div
-                bind:this={(el: HTMLElement) => itemRefs[i] = el}
+                bind:this={el: HTMLElement) => (itemRefs[i] = el)}
                 style="
                     position: absolute;
                     top: {itemOffsets[visibleStart + i]}px;

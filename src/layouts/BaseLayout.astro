@@ -10,9 +10,9 @@ import Footer from '../components/commons/Footer.svelte';
         <meta charset='UTF-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <title>{siteConfig.name}</title>
-        <meta name="description" content={siteConfig.description} />
-        <meta name="keywords" content={siteConfig.keywords?.join(', ')} />
-        <meta property="og:image" content={siteConfig.ogImage?.url} />
+        <meta name='description' content={siteConfig.description} />
+        <meta name='keywords' content={siteConfig.keywords?.join(', ')} />
+        <meta property='og:image' content={siteConfig.ogImage?.url} />
         <link rel='icon' href={`${import.meta.env.BASE_URL}favicon.svg`} />
     </head>
     <body class='bg-background overflow-y-scroll antialiased'>

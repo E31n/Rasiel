@@ -7,20 +7,28 @@
 [![License](https://img.shields.io/github/license/E31n/Rasiel?style=for-the-badge&color=d8bfd8)](https://github.com/E31n/Rasiel/blob/main/LICENSE)
 [![Astro](https://img.shields.io/badge/Powered%20by-Astro-blueviolet?style=for-the-badge&logo=astro)](https://astro.build)
 
-**Rasiel** is a sleek and modern static wallpaper website built with [Svelte](https://svelte.dev/) and [Astro](https://astro.build/). It offers an intuitive interface for browsing, viewing, and downloading high-quality wallpapers. With features like slideshow viewing and bulk downloading based on tags, Rasiel provides a seamless experience for wallpaper enthusiasts.
+**Rasiel** is a sleek and modern static wallpaper website built with
+[Svelte](https://svelte.dev/) and [Astro](https://astro.build/). It offers an
+intuitive interface for browsing, viewing, and downloading high-quality
+wallpapers. With features like slideshow viewing and bulk downloading based on
+tags, Rasiel provides a seamless experience for wallpaper enthusiasts.
+
 </div>
 
 ---
 
 ## ✨ Features
 
-- **Responsive Wallpaper Viewer**: Browse and view wallpapers with a clean and responsive design.
+- **Responsive Wallpaper Viewer**: Browse and view wallpapers with a clean and
+  responsive design.
 - **Slideshow Mode**: Enjoy your favorite wallpapers in a continuous slideshow.
 - **Download Options**:
-  - Single-click download for individual wallpapers.
-  - Bulk download wallpapers based on selected tags.
-- **Tag-Based Filtering**: Easily filter wallpapers by categories or themes using tags.
-- **Static Site Generation**: Built with Astro for fast and efficient static site generation.
+    - Single-click download for individual wallpapers.
+    - Bulk download wallpapers based on selected tags.
+- **Tag-Based Filtering**: Easily filter wallpapers by categories or themes
+  using tags.
+- **Static Site Generation**: Built with Astro for fast and efficient static
+  site generation.
 
 ---
 
@@ -34,38 +42,42 @@
 ### Installation
 
 1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/E31n/Rasiel.git
-   cd Rasiel
-   ```
+
+    ```bash
+    git clone https://github.com/E31n/Rasiel.git
+    cd Rasiel
+    ```
 
 2. **Install dependencies**:
-   ```bash
-   npm install
-   # or
-   bun install
-   ```
+
+    ```bash
+    npm install
+    # or
+    bun install
+    ```
 
 3. **Run the development server**:
-   ```bash
-   npm run dev
-   # or
-   bun run dev
-   ```
+
+    ```bash
+    npm run dev
+    # or
+    bun run dev
+    ```
 
 4. **Build for production**:
-   ```bash
-   npm run build
-   # or
-   bun run build
-   ```
+
+    ```bash
+    npm run build
+    # or
+    bun run build
+    ```
 
 5. **Preview the production build**:
-   ```bash
-   npm run preview
-   # or
-   bun run preview
-   ```
+    ```bash
+    npm run preview
+    # or
+    bun run preview
+    ```
 
 ---
 
@@ -74,8 +86,10 @@
 To add new wallpapers:
 
 1. Rename your image as Topic_Desc_Tags_Category.ext
-2. Where Tags should be seperated by _ and spaces should be replaced with - and ext can be any supported image format like webp, jpg, png, etc.
-4. Place your image files in the `public/wallpapers/` or specific inner directory.
+2. Where Tags should be seperated by \_ and spaces should be replaced with - and
+   ext can be any supported image format like webp, jpg, png, etc.
+3. Place your image files in the `public/wallpapers/` or specific inner
+   directory.
 
 ---
 
@@ -83,27 +97,33 @@ To add new wallpapers:
 
 Rasiel uses a tag-based system to categorize wallpapers.
 
-- Tags help in filtering wallpapers based on themes, colors, or other attributes.
-- Ensure that each wallpaper has appropriate tags for better organization and searchability.
+- Tags help in filtering wallpapers based on themes, colors, or other
+  attributes.
+- Ensure that each wallpaper has appropriate tags for better organization and
+  searchability.
 
 ---
 
 ## 📦 Bulk Downloading
 
-Users can download multiple wallpapers at once based on selected tags:
-(Yet to be implemented)
+Users can download multiple wallpapers at once based on selected tags: (Yet to
+be implemented)
 
 1. Navigate to the tag or category page.
-2. Click on the "Download All" button to download a ZIP file containing all wallpapers under that tag.
+2. Click on the "Download All" button to download a ZIP file containing all
+   wallpapers under that tag.
 
 ---
 
 ## 🧪 Technologies Used
 
-- [Svelte](https://svelte.dev/) - Frontend framework for building user interfaces.
-- [Astro](https://astro.build/) - Static site generator for fast and optimized websites.
+- [Svelte](https://svelte.dev/) - Frontend framework for building user
+  interfaces.
+- [Astro](https://astro.build/) - Static site generator for fast and optimized
+  websites.
 - [TypeScript](https://www.typescriptlang.org/) - Typed superset of JavaScript.
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework for styling.
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework for
+  styling.
 
 ---
 
@@ -125,4 +145,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-For any issues or suggestions, please open an [issue](https://github.com/E31n/Rasiel/issues) on GitHub.
+For any issues or suggestions, please open an
+[issue](https://github.com/E31n/Rasiel/issues) on GitHub.
