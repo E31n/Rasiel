@@ -4,9 +4,10 @@
     import { get } from 'svelte/store';
     import { filteredWallpapers } from '../store/WallpaperStore';
     import { Button } from 'bits-ui';
+    import ProgressBar from './commons/ProgressBar.svelte';
 
     let downloadLinkArray: string[] = [];
-    export let selectedWallpapers: string[];
+    let { selectedWallpapers }: { selectedWallpapers: string[] } = $props();
 
     const DownloadAll = async () => {
         downloadLinkArray = []; // Reset the array for new downloads
@@ -25,8 +26,8 @@
         }
     };
 
-    let downloading = false;
-    let progress = 0;
+    let downloading = $state(false);
+    let progress = $state(0);
 
     async function Download() {
         downloading = true;
@@ -63,6 +64,11 @@
     }
 </script>
 
+{#if downloading}
+    <div class="flex items-center justify-center p-6">
+        <ProgressBar value={progress} />
+    </div>
+{/if}
 <div class="flex items-center justify-center p-6 gap-4">
     <Button.Root
         class="h-input rounded-input bg-dark/75 text-background shadow-mini hover:bg-dark/50 focus-visible:ring-dark focus-visible:ring-offset-background focus-visible:outline-hidden inline-flex w-full items-center justify-center text-[15px] font-semibold transition-all focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] cursor-pointer"
@@ -79,18 +85,3 @@
         Download All
     </Button.Root>
 </div>
-<div>
-    {#if downloading}
-        <p class="text-center text-sm text-foreground/80">
-            Downloading... {progress}%
-        </p>
-        <progress max="100" value={progress}></progress>
-    {/if}
-</div>
-
-<style>
-    progress {
-        width: 100%;
-        margin-top: 0.5rem;
-    }
-</style>
