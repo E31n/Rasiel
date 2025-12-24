@@ -24,7 +24,9 @@ jobs:
                   fetch-depth: 0
 
             - name: Set up Bun
-              uses: oven-sh/setup-bun@v2
+              run: |
+                curl -fsSL https://bun.sh/install | bash
+                export PATH="$HOME/.bun/bin:$PATH"
 
             - name: Install Dependencies
               run: bun i --no-save
