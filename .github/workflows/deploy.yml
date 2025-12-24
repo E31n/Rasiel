@@ -27,13 +27,8 @@ jobs:
               run: |
                 curl -fsSL https://bun.sh/install | bash
                 export PATH="$HOME/.bun/bin:$PATH"
-                source $HOME/.bash_profile
-
-            - name: Install Dependencies
-              run: bun i --no-save
-
-            - name: Build Static Files
-              run: bun run genall
+                bun i --no-save --frozen-lockfile
+                bun run genall
 
             - name: Install, build, and upload your site
               uses: withastro/action@v3
