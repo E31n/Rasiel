@@ -38,7 +38,7 @@ jobs:
 
           unzip bun.zip
           mkdir -p "$HOME/.bun/bin"
-          mv bun "$HOME/.bun/bin/bun"
+          mv bun-linux-x64/bun "$HOME/.bun/bin/bun"
 
           echo "$HOME/.bun/bin" >> $GITHUB_PATH
 
