@@ -1,49 +1,70 @@
 name: Deploy to GitHub Pages
 
 on:
-    # Trigger the workflow every time you push to the `main` branch
-    # Using a different branch name? Replace `main` with your branch’s name
-    push:
-        branches: [main]
-    # Allows you to run this workflow manually from the Actions tab on GitHub.
-    workflow_dispatch:
+  push:
+    branches: [main]
+  workflow_dispatch:
 
-# Allow this job to clone the repo and create a page deployment
 permissions:
-    contents: read
-    pages: write
-    id-token: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout your repository using git
-              uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
+  build:
+    runs-on: ubuntu-latest
 
-            - name: Set up Bun
-              run: |
-                curl -fsSL https://bun.sh/install | bash
-                export PATH="$HOME/.bun/bin:$PATH"
-                bun i --no-save --frozen-lockfile
-                bun run genall
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-            - name: Install, build, and upload your site
-              uses: withastro/action@v3
-              # with:
-              # path: . # The root location of your Astro project inside the repository. (optional)
-              # node-version: 20 # The specific version of Node that should be used to build your site. Defaults to 20. (optional)
-              # package-manager: bun@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
+      # ---- Install Bun (pinned + retry-safe) ----
+      - name: Install Bun
+        shell: bash
+        run: |
+          set -euxo pipefail
 
-    deploy:
-        needs: build
-        runs-on: ubuntu-latest
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
-        steps:
-            - name: Deploy to GitHub Pages
-              id: deployment
-              uses: actions/deploy-pages@v4
+          BUN_VERSION="bun-v1.1.38"
+          BUN_ZIP="bun-linux-x64.zip"
+
+          curl -fL \
+            --retry 5 \
+            --retry-delay 5 \
+            --retry-connrefused \
+            https://github.com/oven-sh/bun/releases/download/${BUN_VERSION}/${BUN_ZIP} \
+            -o bun.zip
+
+          unzip bun.zip
+          mkdir -p "$HOME/.bun/bin"
+          mv bun "$HOME/.bun/bin/bun"
+
+          echo "$HOME/.bun/bin" >> $GITHUB_PATH
+
+      - name: Verify Bun
+        run: bun --version
+
+      # ---- Install deps + generate ----
+      - name: Install dependencies & generate
+        run: |
+          bun install --frozen-lockfile
+          bun run genall
+
+      # ---- Build & upload site ----
+      - name: Build and upload Astro site
+        uses: withastro/action@v3
+        with:
+          package-manager: bun
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
